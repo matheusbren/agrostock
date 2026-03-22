@@ -8,6 +8,16 @@ Este documento detalha a arquitetura técnica, o modelo de dados e os contratos 
 
 Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do nosso "banco de dados" (`db.json`) e como as informações se conectam.
 
+# 🛠️ Especificação Técnica (Tech Spec) - AgroStock
+
+Este documento detalha a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) necessários para o funcionamento do sistema de controle de insumos agrícolas AgroStock.
+
+---
+
+## 1. Modelo de Dados (Diagrama ER)
+
+Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do nosso "banco de dados" (`db.json`) e como as informações se conectam.
+
 ```mermaid
 erDiagram
 FORNECEDOR ||--o{ INSUMO : "fornece"
@@ -29,7 +39,8 @@ float quantidade
 string unidade
 string fornecedorId FK
 string dataCompra
-} ```
+}
+
 2. Dicionário de Dados
 🌾 Insumos
 
