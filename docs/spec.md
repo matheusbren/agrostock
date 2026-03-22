@@ -39,7 +39,8 @@ float quantidade
 string unidade
 string fornecedorId FK
 string dataCompra
-} ```
+}
+```
 
 2. Dicionário de Dados
 🌾 Insumos
