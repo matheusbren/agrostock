@@ -8,16 +8,6 @@ Este documento detalha a arquitetura técnica, o modelo de dados e os contratos 
 
 Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do nosso "banco de dados" (`db.json`) e como as informações se conectam.
 
-# 🛠️ Especificação Técnica (Tech Spec) - AgroStock
-
-Este documento detalha a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) necessários para o funcionamento do sistema de controle de insumos agrícolas AgroStock.
-
----
-
-## 1. Modelo de Dados (Diagrama ER)
-
-Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do nosso "banco de dados" (`db.json`) e como as informações se conectam.
-
 ```mermaid
 erDiagram
 FORNECEDOR ||--o{ INSUMO : "fornece"
@@ -68,13 +58,13 @@ estado: Estado do fornecedor.
 
 A aplicação consome uma API fake utilizando JSON Server.
 
-Insumos
+📦 Insumos
 GET /insumos → Retorna todos os insumos cadastrados
 POST /insumos → Cadastra um novo insumo
 GET /insumos/{id} → Retorna um insumo específico
 PUT /insumos/{id} → Atualiza um insumo
 DELETE /insumos/{id} → Remove um insumo
-Fornecedores
+🏢 Fornecedores
 GET /fornecedores → Lista fornecedores
 POST /fornecedores → Cadastra fornecedor
 GET /fornecedores/{id} → Retorna fornecedor específico
@@ -113,16 +103,11 @@ GET /fornecedores/{id} → Retorna fornecedor específico
 }
 5. Integração com API Pública
 
-A aplicação utilizará a API de CEP:
+A aplicação utilizará a API de CEP (ViaCEP) para preenchimento automático de endereço.
 
-Preenchimento automático de endereço a partir do CEP do fornecedor.
-
-Exemplo de requisição:
-
+🔗 Exemplo de requisição
 https://viacep.com.br/ws/{cep}/json/
-
-Fluxo:
-
+🔄 Fluxo
 Usuário digita o CEP
 Sistema faz requisição à API
 Campos de endereço são preenchidos automaticamente
@@ -143,9 +128,9 @@ Mensagem de sucesso é exibida
 Usuário digita CEP
 Sistema faz requisição à API ViaCEP
 Se válido:
-Preenche endereço automaticamente
+→ Preenche endereço automaticamente
 Se inválido:
-Exibe mensagem de erro
+→ Exibe mensagem de erro
 9. Tratamento de Erros
 Campos obrigatórios não preenchidos
 Quantidade inválida (número negativo)
@@ -158,23 +143,3 @@ Nome do insumo é obrigatório
 CEP deve ser válido
 Um insumo deve estar vinculado a um fornecedor
 Exclusão de insumo remove o item da listagem
-
----
-
-# ✅ O que você faz agora
-
-1. Vai em:
-
-docs/spec.md
-
-
-2. Apaga tudo  
-3. Cola isso  
-4. Commita  
-
----
-
-# 💬 Commit ideal
-
-```bash
-git commit -m "docs: melhora spec com modelo completo, entidades e integração com API"
