@@ -12,7 +12,7 @@ Em andamento
 ---
 
 ## 🎨 Design
-Em andamento
+Prototipação: https://www.figma.com/design/hK4haiiVzRuvn8zxy3sQ3N/AgroStock?node-id=0-1&t=cqMSHli0yGXrTOrf-1
 
 ---
 
