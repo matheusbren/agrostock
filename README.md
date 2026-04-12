@@ -22,7 +22,25 @@ Em andamento
 ---
 
 ## 💻 Tecnologias e Dependências
-Em andamento
+
+- **Framework CSS:** Bootstrap 5 — escolhido pela ampla biblioteca de componentes prontos
+  (cards, tabelas, modais, badges), sistema de grid responsivo robusto e compatibilidade
+  nativa com Sass/SCSS, atendendo aos requisitos de layout responsivo e design system.
+
+- **JavaScript:**
+  - **jQuery** — Manipulação do DOM e interatividade.
+  - **jQuery Mask Plugin** — Máscaras em campos de formulário (CEP, telefone).
+  - **JSON Server** — Simulação de API REST para persistência de dados.
+
+- **APIs Públicas:**
+  - **ViaCEP** (`https://viacep.com.br`) — Preenchimento automático de endereço
+    pelo CEP no cadastro de fornecedores.
+  - **Open-Meteo** (`https://open-meteo.com`) — Exibição de dados climáticos
+    em tempo real no dashboard, relevante para gestão de insumos agrícolas.
+
+- **Ferramentas:**
+  - **Sass (SCSS)** — Estilização modular com variáveis e mixins.
+  - **ESLint + Prettier** — Linter e formatador de código.
 
 ---
 

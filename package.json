@@ -1,0 +1,23 @@
+{
+  "name": "agrostock",
+  "version": "1.0.0",
+  "description": "Aplicação web responsiva para controle de insumos agrícolas",
+  "main": "index.js",
+  "scripts": {
+    "json:server": "json-server --watch db.json",
+    "json:server:routes": "json-server --watch db.json --routes routes.json"
+  },
+  "author": "Matheus de Queiroga Bren",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "jquery-mask-plugin": "^1.14.16"
+  },
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3",
+    "sass": "^1.77.6",
+    "eslint": "^9.6.0",
+    "prettier": "^3.3.2"
+  }
+}
