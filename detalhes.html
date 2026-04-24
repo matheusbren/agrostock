@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroStock — Detalhes do Insumo</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body class="bg-surface-agro">
+
+  <!-- ═══ OFFCANVAS SIDEBAR (mobile) ═══════════════════════ -->
+  <div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas-header border-bottom" style="border-color:var(--agro-outline-variant)!important;">
+      <div>
+        <span class="sidebar-brand">AgroStock</span>
+        <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-3 d-flex flex-column">
+      <nav class="d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+        <a href="estoque.html" class="sidebar-nav-link active"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+        <a href="relatorios.html" class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+        <a href="configuracoes.html" class="sidebar-nav-link"><span class="material-symbols-outlined">settings</span> Configurações</a>
+      </nav>
+      <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+        <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+          <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+        </a>
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIDEBAR ESTÁTICA (desktop) ══════════════════════ -->
+  <aside class="sidebar-static d-none d-lg-flex flex-column">
+    <div class="mb-4 ps-1">
+      <a href="index.html" class="sidebar-brand d-block">AgroStock</a>
+      <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+    </div>
+    <nav class="d-flex flex-column gap-1 flex-grow-1">
+      <a href="index.html" class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+      <a href="estoque.html" class="sidebar-nav-link active"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+      <a href="relatorios.html" class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+      <a href="configuracoes.html" class="sidebar-nav-link"><span class="material-symbols-outlined">settings</span> Configurações</a>
+    </nav>
+    <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+      <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+      </a>
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN WRAPPER ════════════════════════════════════ -->
+  <div class="main-wrapper d-flex flex-column min-vh-100">
+
+    <!-- TOP HEADER -->
+    <header class="top-header d-flex align-items-center px-3 px-lg-4 gap-3">
+      <button class="btn-icon d-lg-none" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-label="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <div class="search-wrap d-none d-md-block">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" class="search-input" placeholder="Buscar fornecedores ou SKUs..." />
+      </div>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <button class="btn-icon" aria-label="Notificações">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="btn-icon" aria-label="Histórico">
+          <span class="material-symbols-outlined">history</span>
+        </button>
+        <div class="rounded-circle overflow-hidden ms-1" style="width:2rem;height:2rem;">
+          <img src="https://ui-avatars.com/api/?name=Admin&background=17330e&color=fff&size=32" alt="Admin" class="w-100 h-100 object-fit-cover" />
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1 px-3 px-lg-5 py-4">
+
+      <!-- Header Actions -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end gap-4 mb-5">
+        <div>
+          <ol class="breadcrumb-agro mb-3">
+            <li><a href="estoque.html">Estoque</a></li>
+            <li class="sep"><span class="material-symbols-outlined" style="font-size:0.875rem;">chevron_right</span></li>
+            <li><a href="estoque.html">Fertilizantes</a></li>
+            <li class="sep"><span class="material-symbols-outlined" style="font-size:0.875rem;">chevron_right</span></li>
+            <li class="active">Fertilizante Ureia</li>
+          </ol>
+          <h2 class="fw-800 mb-3" style="font-size:2.75rem;letter-spacing:-0.04em;line-height:1;">
+            Fertilizante Ureia
+          </h2>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge-status badge-em-estoque" style="font-size:0.6875rem;padding:0.3rem 0.75rem;">SKU: AG-URE-2024</span>
+            <span class="badge-status" style="font-size:0.6875rem;padding:0.3rem 0.75rem;background:var(--agro-tertiary-fixed);color:var(--agro-on-tertiary-fixed);">Categoria: Nutrientes do Solo</span>
+          </div>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="editar.html" class="btn btn-agro-secondary px-4 py-2 d-flex align-items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size:1.1rem;">edit</span> Editar
+          </a>
+          <button type="button" class="btn py-2 px-4 d-flex align-items-center gap-2 fw-700"
+                  style="background:var(--agro-error-container);color:var(--agro-error);border:none;border-radius:0.5rem;font-size:0.875rem;"
+                  data-bs-toggle="modal" data-bs-target="#modalExcluir">
+            <span class="material-symbols-outlined" style="font-size:1.1rem;">delete</span> Excluir
+          </button>
+        </div>
+      </div>
+
+      <!-- Metric blocks — Bootstrap row/col grid -->
+      <div class="row g-4 mb-5">
+        <div class="col-6 col-md-3">
+          <div class="metric-block">
+            <p class="metric-label">Quantidade Disponível</p>
+            <p class="metric-value">1.850 <span style="font-size:1rem;font-weight:500;opacity:0.5;">kg</span></p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="metric-block">
+            <p class="metric-label">Nível Mínimo</p>
+            <p class="metric-value text-error-agro">200 <span style="font-size:1rem;font-weight:500;opacity:0.5;">kg</span></p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="metric-block">
+            <p class="metric-label">Valor Unitário</p>
+            <p class="metric-value">R$ 4,20</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="metric-block">
+            <p class="metric-label">Valor Total</p>
+            <p class="metric-value text-primary-agro">R$ 7.770,00</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stock Level Visual -->
+      <div class="rounded-xl p-4 mb-5 bg-surface-low">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="fw-700 mb-0" style="font-size:1rem;">Nível de Estoque Atual</h3>
+          <span class="badge-status badge-em-estoque">Em Estoque</span>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+          <div class="flex-grow-1">
+            <div class="progress-agro" style="height:12px;">
+              <div class="bar bar-primary" style="width:92%;"></div>
+            </div>
+          </div>
+          <span class="fw-700 text-primary-agro" style="font-size:1.125rem;min-width:3rem;">92%</span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span class="text-muted-agro" style="font-size:0.75rem;">0 kg</span>
+          <span class="text-muted-agro" style="font-size:0.75rem;">Mín: 200 kg</span>
+          <span class="text-muted-agro" style="font-size:0.75rem;">Máx: 2.000 kg</span>
+        </div>
+      </div>
+
+      <!-- 2-column detail layout -->
+      <div class="row g-4">
+
+        <!-- Specifications -->
+        <div class="col-12 col-lg-7">
+          <div class="section-card">
+            <h3 class="fw-700 mb-4" style="font-size:1.125rem;">Especificações Técnicas</h3>
+            <div class="row g-3">
+              <div class="col-6">
+                <p class="fs-label text-muted-agro mb-1">Composição</p>
+                <p class="fw-600 mb-0" style="font-size:0.875rem;">Nitrogênio 46% (N)</p>
+              </div>
+              <div class="col-6">
+                <p class="fs-label text-muted-agro mb-1">Forma Física</p>
+                <p class="fw-600 mb-0" style="font-size:0.875rem;">Granulado</p>
+              </div>
+              <div class="col-6">
+                <p class="fs-label text-muted-agro mb-1">Solubilidade</p>
+                <p class="fw-600 mb-0" style="font-size:0.875rem;">1080 g/L (25°C)</p>
+              </div>
+              <div class="col-6">
+                <p class="fs-label text-muted-agro mb-1">pH (solução 1%)</p>
+                <p class="fw-600 mb-0" style="font-size:0.875rem;">7,2 – 7,8</p>
+              </div>
+              <div class="col-12">
+                <p class="fs-label text-muted-agro mb-2">Culturas Indicadas</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge-status badge-em-estoque">Soja</span>
+                  <span class="badge-status badge-em-estoque">Milho</span>
+                  <span class="badge-status badge-em-estoque">Cana</span>
+                  <span class="badge-status badge-em-estoque">Café</span>
+                  <span class="badge-status badge-em-estoque">Pastagem</span>
+                </div>
+              </div>
+              <div class="col-12 mt-2">
+                <p class="fs-label text-muted-agro mb-1">Observações</p>
+                <p class="mb-0" style="font-size:0.875rem;line-height:1.6;color:var(--agro-on-surface-variant);">
+                  Produto de alta concentração nitrogenada. Armazenar em local seco, arejado e longe de fontes de calor.
+                  Evitar contato com materiais combustíveis. Verificar temperatura de armazenamento periodicamente.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lot History Table -->
+          <div class="rounded-xl overflow-hidden mt-4" style="background:var(--agro-surface-lowest);">
+            <div class="px-4 py-3 bg-surface-low">
+              <h3 class="fw-700 mb-0" style="font-size:1rem;">Histórico de Lotes</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table-agro">
+                <thead>
+                  <tr>
+                    <th>Lote</th>
+                    <th>Data de Entrada</th>
+                    <th class="text-end">Quantidade</th>
+                    <th>Validade</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-700" style="font-family:monospace;font-size:0.8125rem;">#URE-2024-01</span></td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">15/01/2024</td>
+                    <td class="text-end fw-700" style="font-size:0.875rem;">1.000 kg</td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">12/2025</td>
+                    <td><span class="badge-status badge-em-estoque">Ativo</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-700" style="font-family:monospace;font-size:0.8125rem;">#URE-2024-02</span></td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">08/03/2024</td>
+                    <td class="text-end fw-700" style="font-size:0.875rem;">850 kg</td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">03/2026</td>
+                    <td><span class="badge-status badge-em-estoque">Ativo</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-700" style="font-family:monospace;font-size:0.8125rem;">#URE-2023-08</span></td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">22/11/2023</td>
+                    <td class="text-end fw-700 text-muted-agro" style="font-size:0.875rem;">500 kg</td>
+                    <td class="text-muted-agro" style="font-size:0.875rem;">11/2024</td>
+                    <td><span class="badge-status badge-esgotado">Consumido</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div><!-- /col-lg-7 -->
+
+        <!-- Supplier Info + Actions -->
+        <div class="col-12 col-lg-5 d-flex flex-column gap-4">
+
+          <!-- Supplier card -->
+          <div class="section-card">
+            <h3 class="fw-700 mb-4 d-flex align-items-center gap-2" style="font-size:1rem;">
+              <span class="material-symbols-outlined text-primary-agro" style="font-size:1.25rem;">local_shipping</span>
+              Fornecedor
+            </h3>
+            <div class="d-flex align-items-center gap-3 mb-4 p-3 rounded-xl bg-surface-container">
+              <div class="rounded-circle d-flex align-items-center justify-content-center fw-800 flex-shrink-0" style="width:3rem;height:3rem;background:var(--agro-primary-fixed);color:var(--agro-primary);font-family:'Manrope',sans-serif;">AG</div>
+              <div>
+                <p class="fw-700 mb-0" style="font-size:0.9375rem;">AgroGlobal Solutions Ltda.</p>
+                <p class="text-muted-agro mb-0" style="font-size:0.75rem;">CNPJ: 12.345.678/0001-90</p>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-start gap-3">
+                <span class="material-symbols-outlined text-muted-agro flex-shrink-0" style="font-size:1rem;margin-top:0.1rem;">location_on</span>
+                <div>
+                  <p class="fs-label text-muted-agro mb-1">Endereço</p>
+                  <p class="mb-0" style="font-size:0.875rem;">Av. das Nações Unidas, Brooklin, São Paulo – SP, 04571-010</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3">
+                <span class="material-symbols-outlined text-muted-agro flex-shrink-0" style="font-size:1rem;margin-top:0.1rem;">phone</span>
+                <div>
+                  <p class="fs-label text-muted-agro mb-1">Telefone</p>
+                  <p class="mb-0 fw-600" style="font-size:0.875rem;">(11) 3456-7890</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3">
+                <span class="material-symbols-outlined text-muted-agro flex-shrink-0" style="font-size:1rem;margin-top:0.1rem;">mail</span>
+                <div>
+                  <p class="fs-label text-muted-agro mb-1">E-mail</p>
+                  <p class="mb-0 fw-600" style="font-size:0.875rem;">pedidos@agroglobal.com.br</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick actions -->
+          <div class="rounded-xl p-4 bg-surface-low d-flex flex-column gap-2" style="border:1px solid var(--agro-outline-variant);">
+            <h3 class="fw-700 mb-2" style="font-size:0.9375rem;">Ações Rápidas</h3>
+            <a href="editar.html" class="btn btn-agro-primary py-2 d-flex align-items-center justify-content-center gap-2">
+              <span class="material-symbols-outlined" style="font-size:1rem;">edit</span> Editar Insumo
+            </a>
+            <a href="cadastro.html" class="btn btn-agro-secondary py-2 d-flex align-items-center justify-content-center gap-2"><span class="material-symbols-outlined" style="font-size:1rem;">add_circle</span> Registrar Entrada</a>
+          </div>
+
+        </div><!-- /col-lg-5 -->
+      </div><!-- /row -->
+
+    </main>
+
+    <!-- FOOTER (sticky) -->
+    <footer class="app-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span>© 2024 Ecossistema Digital AgroStock</span>
+      <div class="d-flex gap-4">
+        <a href="#">Protocolo de Privacidade</a>
+        <a href="#">Logs de Auditoria</a>
+        <a href="#">Suporte</a>
+      </div>
+    </footer>
+
+  </div><!-- /main-wrapper -->
+
+  <!-- Modal Excluir -->
+  <div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border:none;border-radius:0.75rem;overflow:hidden;">
+        <div class="modal-header" style="background:var(--agro-error-container);border:none;">
+          <h5 class="modal-title fw-700" id="modalExcluirLabel" style="color:var(--agro-error);">
+            <span class="material-symbols-outlined me-2" style="vertical-align:middle;">warning</span>
+            Confirmar Exclusão
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="mb-0" style="font-size:0.9375rem;">
+            Deseja excluir permanentemente o insumo <strong>Fertilizante Ureia (AG-URE-2024)</strong>?
+            Esta ação não pode ser desfeita.
+          </p>
+        </div>
+        <div class="modal-footer" style="border:none;gap:0.75rem;">
+          <button type="button" class="btn btn-agro-secondary px-4 py-2" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn py-2 px-5 fw-700"
+                  style="background:var(--agro-error);color:white;border:none;border-radius:0.5rem;">
+            Excluir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

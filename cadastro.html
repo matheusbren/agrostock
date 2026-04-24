@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroStock — Cadastrar Insumo</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body class="bg-surface-agro">
+
+  <!-- ═══ OFFCANVAS SIDEBAR (mobile) ═══════════════════════ -->
+  <div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas-header border-bottom" style="border-color:var(--agro-outline-variant)!important;">
+      <div>
+        <span class="sidebar-brand">AgroStock</span>
+        <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-3 d-flex flex-column">
+      <nav class="d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+        <a href="estoque.html" class="sidebar-nav-link active"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+        <a href="relatorios.html" class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+        <a href="configuracoes.html" class="sidebar-nav-link"><span class="material-symbols-outlined">settings</span> Configurações</a>
+      </nav>
+      <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIDEBAR ESTÁTICA (desktop) ══════════════════════ -->
+  <aside class="sidebar-static d-none d-lg-flex flex-column">
+    <div class="mb-4 ps-1">
+      <a href="index.html" class="sidebar-brand d-block">AgroStock</a>
+      <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+    </div>
+    <nav class="d-flex flex-column gap-1 flex-grow-1">
+      <a href="index.html" class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+      <a href="estoque.html" class="sidebar-nav-link active"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+      <a href="relatorios.html" class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+      <a href="configuracoes.html" class="sidebar-nav-link"><span class="material-symbols-outlined">settings</span> Configurações</a>
+    </nav>
+    <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN WRAPPER ════════════════════════════════════ -->
+  <div class="main-wrapper d-flex flex-column min-vh-100">
+
+    <!-- TOP HEADER -->
+    <header class="top-header d-flex align-items-center px-3 px-lg-4 gap-3">
+      <button class="btn-icon d-lg-none" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-label="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <div class="search-wrap d-none d-md-block">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" class="search-input" placeholder="Buscar recursos..." />
+      </div>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <button class="btn-icon" aria-label="Notificações">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="btn-icon" aria-label="Histórico">
+          <span class="material-symbols-outlined">history</span>
+        </button>
+        <div class="d-flex align-items-center gap-2">
+          <div class="rounded-circle overflow-hidden" style="width:2rem;height:2rem;">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=17330e&color=fff&size=32" alt="Admin" class="w-100 h-100 object-fit-cover" />
+          </div>
+          <div class="d-none d-md-block">
+            <p class="fw-700 mb-0" style="font-size:0.75rem;line-height:1;">Usuário Admin</p>
+            <p class="text-muted-agro mb-0" style="font-size:0.625rem;text-transform:uppercase;letter-spacing:0.08em;">Gerente</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1 px-3 px-lg-5 py-4">
+      <div class="mx-auto" style="max-width:64rem;">
+
+        <!-- Breadcrumb + Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-5 gap-3">
+          <div>
+            <ol class="breadcrumb-agro mb-3">
+              <li><a href="estoque.html">Estoque</a></li>
+              <li class="sep"><span class="material-symbols-outlined" style="font-size:0.875rem;">chevron_right</span></li>
+              <li class="active">Novo Insumo</li>
+            </ol>
+            <h2 class="fw-800 mb-1" style="font-size:2rem;letter-spacing:-0.03em;line-height:1.15;">
+              Cadastrar <span class="text-primary-agro">Novo Insumo</span>
+            </h2>
+            <p class="text-muted-agro mb-0">Preencha as especificações e parâmetros de estoque para a safra 2024.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="estoque.html" class="btn btn-agro-secondary px-4 py-2">Cancelar</a>
+            <button type="submit" form="formCadastro" class="btn btn-agro-primary px-5 py-2">Salvar Produto</button>
+          </div>
+        </div>
+
+        <form id="formCadastro" novalidate>
+          <div class="row g-4">
+
+            <!-- LEFT — 3 form sections -->
+            <div class="col-12 col-lg-8 d-flex flex-column gap-4">
+
+              <!-- Section 1: Basic Info -->
+              <section class="section-card">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                  <div class="rounded-2 d-flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem;background:var(--agro-tertiary-fixed);color:var(--agro-on-tertiary-fixed);">
+                    <span class="material-symbols-outlined">info</span>
+                  </div>
+                  <h3 class="fw-700 mb-0" style="font-size:1.125rem;">Informações Básicas</h3>
+                </div>
+
+                <div class="row g-4">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="nomeInsumo">Nome do Insumo</label>
+                    <input type="text" id="nomeInsumo" class="form-control-agro" placeholder="ex: NPK 10-10-10" required />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="categoria">Categoria</label>
+                    <select id="categoria" class="form-select-agro">
+                      <option value="">Selecione...</option>
+                      <option>Fertilizantes</option>
+                      <option>Pesticidas</option>
+                      <option>Sementes</option>
+                      <option>Reguladores de Crescimento</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label-agro" for="descricao">Descrição</label>
+                    <textarea id="descricao" class="form-control-agro" rows="4"
+                              placeholder="Descreva composição química e instruções de uso..."></textarea>
+                    <p class="text-muted-agro mt-1 mb-0 d-flex align-items-center gap-1" style="font-size:0.6875rem;">
+                      <span class="material-symbols-outlined" style="font-size:0.875rem;">tips_and_updates</span>
+                      Descrições detalhadas melhoram a correspondência de SKU.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 2: Inventory Parameters -->
+              <section class="section-card">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                  <div class="rounded-2 d-flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem;background:var(--agro-secondary-container);color:var(--agro-secondary);">
+                    <span class="material-symbols-outlined">inventory</span>
+                  </div>
+                  <h3 class="fw-700 mb-0" style="font-size:1.125rem;">Logística de Estoque</h3>
+                </div>
+
+                <div class="row g-4">
+                  <div class="col-12 col-md-4">
+                    <label class="form-label-agro" for="quantidade">Quantidade</label>
+                    <input type="number" id="quantidade" class="form-control-agro" placeholder="0" min="0" />
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <label class="form-label-agro" for="unidade">Unidade de Medida</label>
+                    <select id="unidade" class="form-select-agro">
+                      <option>Quilogramas (kg)</option>
+                      <option>Litros (L)</option>
+                      <option>Toneladas (t)</option>
+                      <option>Unidades (un)</option>
+                      <option>Sacas (sc)</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <label class="form-label-agro" for="estoqueMin">Nível Mínimo de Estoque</label>
+                    <div class="position-relative">
+                      <input type="number" id="estoqueMin" class="form-control-agro pe-5" placeholder="0"
+                             style="background:var(--agro-error-container);color:var(--agro-error);font-weight:700;" />
+                      <span class="material-symbols-outlined position-absolute text-error-agro"
+                            style="right:0.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;">warning</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Alert: critical threshold -->
+                <div class="alert-agro alert-agro-error mt-4">
+                  <span class="material-symbols-outlined flex-shrink-0" style="font-size:1.1rem;">error_outline</span>
+                  <div>
+                    <p class="fw-700 mb-1" style="font-size:0.8125rem;">Alerta de Limite Crítico</p>
+                    <p class="mb-0" style="font-size:0.75rem;">Níveis abaixo do mínimo acionarão protocolos automáticos de reposição.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 3: Supplier -->
+              <section class="section-card">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                  <div class="rounded-2 d-flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem;background:var(--agro-primary-fixed);color:var(--agro-primary);">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                  </div>
+                  <h3 class="fw-700 mb-0" style="font-size:1.125rem;">Origem do Fornecedor</h3>
+                </div>
+
+                <div class="d-flex flex-column gap-4">
+                  <div>
+                    <label class="form-label-agro" for="fornecedor">Nome do Fornecedor</label>
+                    <input type="text" id="fornecedor" class="form-control-agro" placeholder="Nome da empresa fornecedora" />
+                  </div>
+                  <div class="row g-4">
+                    <div class="col-12 col-md-4">
+                      <label class="form-label-agro" for="cep">CEP</label>
+                      <div class="position-relative">
+                        <input type="text" id="cep" class="form-control-agro pe-5" placeholder="00000-000" maxlength="9" />
+                        <span class="material-symbols-outlined position-absolute text-primary-agro"
+                              style="right:0.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;">sync</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                      <label class="form-label-agro" for="endereco">Endereço (Preenchimento Automático)</label>
+                      <input type="text" id="endereco" class="form-control-agro" readonly
+                             style="opacity:0.6;cursor:not-allowed;background:var(--agro-surface-container);"
+                             placeholder="Preenchido automaticamente via CEP..." />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div><!-- /col-lg-8 -->
+
+            <!-- RIGHT — Preview + Sidebar info -->
+            <div class="col-12 col-lg-4 d-flex flex-column gap-4">
+
+              <!-- Preview Card -->
+              <div class="rounded-xl p-4 bg-surface-high">
+                <p class="fs-label fw-700 text-uppercase tracking-widest text-muted-agro mb-4">Pré-visualização</p>
+                <div class="rounded-xl overflow-hidden bg-surface-lowest" style="border:1px solid var(--agro-outline-variant);">
+                  <div class="d-flex align-items-center justify-content-center" style="height:7rem;background:rgba(121,86,75,0.1);">
+                    <span class="material-symbols-outlined" style="font-size:3rem;color:rgba(121,86,75,0.3);">science</span>
+                  </div>
+                  <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <span class="badge-status badge-em-estoque">Fertilizante</span>
+                      <span class="text-primary-agro fw-700" style="font-size:0.75rem;">ID: Novo</span>
+                    </div>
+                    <h5 class="fw-700 mb-3" style="font-size:1rem;">Novo Insumo</h5>
+                    <div class="row g-3">
+                      <div class="col-6">
+                        <p class="fs-label text-muted-agro mb-1">Disponível</p>
+                        <p class="fw-800 mb-0" style="font-family:'Manrope',sans-serif;font-size:1.25rem;">— <span style="font-size:0.75rem;font-weight:400;opacity:0.5;">kg</span></p>
+                      </div>
+                      <div class="col-6">
+                        <p class="fs-label text-muted-agro mb-1">Nível Mín.</p>
+                        <p class="fw-800 mb-0 text-error-agro" style="font-family:'Manrope',sans-serif;font-size:1.25rem;">— <span style="font-size:0.75rem;font-weight:400;opacity:0.5;">kg</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Market Insight -->
+              <div class="rounded-xl p-4 bg-primary-agro text-white position-relative overflow-hidden">
+                <div class="position-relative" style="z-index:1;">
+                  <span class="material-symbols-outlined mb-3 d-block" style="font-size:2rem;color:var(--agro-primary-fixed);">trending_up</span>
+                  <h4 class="fw-700 mb-2" style="font-size:1rem;">Tendência do Mercado</h4>
+                  <p class="mb-4" style="font-size:0.8125rem;opacity:0.8;line-height:1.5;">
+                    Os preços do potássio subiram 12% no último trimestre. Considere aumentar o nível mínimo para evitar volatilidade.
+                  </p>
+                  <a href="relatorios.html" class="d-flex align-items-center gap-2 fw-700" style="color:var(--agro-primary-fixed);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;">Ver Relatório <span class="material-symbols-outlined" style="font-size:0.875rem;">arrow_forward</span></a>
+                </div>
+                <div class="position-absolute rounded-circle" style="width:10rem;height:10rem;background:var(--agro-primary-container);filter:blur(3rem);opacity:0.5;bottom:-3rem;right:-3rem;z-index:0;"></div>
+              </div>
+
+              <!-- Quick Support -->
+              <div class="rounded-xl p-4 bg-surface-low" style="border:1px solid var(--agro-outline-variant);">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="rounded-circle overflow-hidden flex-shrink-0" style="width:2.5rem;height:2.5rem;">
+                    <img src="https://ui-avatars.com/api/?name=Suporte&background=c9edb6&color=17330e&size=40" alt="Suporte" class="w-100 h-100 object-fit-cover" style="filter:grayscale(0.3);" />
+                  </div>
+                  <div>
+                    <p class="fw-700 mb-0" style="font-size:0.8125rem;">Especialista Agrônomo</p>
+                    <p class="text-muted-agro mb-0" style="font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.08em;">Pronto para ajudar</p>
+                  </div>
+                </div>
+                <p class="text-muted-agro fst-italic mb-3" style="font-size:0.8125rem;">
+                  "Precisa de ajuda com compatibilidade química para entradas de estoque?"
+                </p>
+              </div>
+
+            </div><!-- /col-lg-4 -->
+          </div><!-- /row -->
+
+
+        </form>
+      </div>
+    </main>
+
+    <!-- FOOTER (sticky) -->
+    <footer class="app-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span>© 2024 Ecossistema Digital AgroStock</span>
+      <div class="d-flex gap-4">
+        <a href="#">Privacidade</a>
+        <a href="#">Suporte</a>
+      </div>
+    </footer>
+
+  </div><!-- /main-wrapper -->
+
+  <!-- Toast notification -->
+  <div class="position-fixed bottom-0 end-0 p-4" style="z-index:1100;">
+    <div id="toastCEP" class="toast toast-agro align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex gap-3 p-3">
+        <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:2.5rem;height:2.5rem;background:var(--agro-surface-tint,#48663b);color:white;">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">check_circle</span>
+        </div>
+        <div>
+          <p class="fw-700 mb-1" style="font-size:0.875rem;">Preenchimento Automático</p>
+          <p class="text-muted-agro mb-0" style="font-size:0.75rem;">Endereço carregado via API dos Correios.</p>
+        </div>
+        <button type="button" class="btn-icon ms-auto align-self-start" data-bs-dismiss="toast">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Show toast on page load as demo
+    const toastEl = document.getElementById('toastCEP');
+    if (toastEl) {
+      const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+      setTimeout(() => toast.show(), 800);
+    }
+  </script>
+</body>
+</html>

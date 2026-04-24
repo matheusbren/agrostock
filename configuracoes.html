@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroStock — Configurações</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body class="bg-surface-agro">
+
+  <!-- ═══ OFFCANVAS SIDEBAR (mobile) ═══════════════════════ -->
+  <div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas-header border-bottom" style="border-color:var(--agro-outline-variant)!important;">
+      <div>
+        <span class="sidebar-brand">AgroStock</span>
+        <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-3 d-flex flex-column">
+      <nav class="d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html"          class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+        <a href="estoque.html"        class="sidebar-nav-link"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+        <a href="relatorios.html"     class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+        <a href="configuracoes.html"  class="sidebar-nav-link active"><span class="material-symbols-outlined">settings</span> Configurações</a>
+      </nav>
+      <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+        <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+          <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+        </a>
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+        <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIDEBAR ESTÁTICA (desktop) ══════════════════════ -->
+  <aside class="sidebar-static d-none d-lg-flex flex-column">
+    <div class="mb-4 ps-1">
+      <a href="index.html" class="sidebar-brand d-block">AgroStock</a>
+      <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+    </div>
+    <nav class="d-flex flex-column gap-1 flex-grow-1">
+      <a href="index.html"          class="sidebar-nav-link"><span class="material-symbols-outlined">dashboard</span> Painel</a>
+      <a href="estoque.html"        class="sidebar-nav-link"><span class="material-symbols-outlined">inventory_2</span> Estoque</a>
+      <a href="relatorios.html"     class="sidebar-nav-link"><span class="material-symbols-outlined">analytics</span> Relatórios</a>
+      <a href="configuracoes.html"  class="sidebar-nav-link active"><span class="material-symbols-outlined">settings</span> Configurações</a>
+    </nav>
+    <div class="mt-auto pt-3" style="border-top:1px solid var(--agro-outline-variant);">
+      <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+      </a>
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">help_outline</span> Suporte</a>
+      <a href="#" class="sidebar-nav-link"><span class="material-symbols-outlined">logout</span> Sair</a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN WRAPPER ════════════════════════════════════ -->
+  <div class="main-wrapper d-flex flex-column min-vh-100">
+
+    <!-- TOP HEADER -->
+    <header class="top-header d-flex align-items-center px-3 px-lg-4 gap-3">
+      <button class="btn-icon d-lg-none" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-label="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <div class="search-wrap d-none d-md-block">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" class="search-input" placeholder="Buscar configurações..." />
+      </div>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <button class="btn-icon" aria-label="Notificações">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <div class="rounded-circle overflow-hidden ms-1" style="width:2rem;height:2rem;">
+          <img src="https://ui-avatars.com/api/?name=Admin&background=17330e&color=fff&size=32" alt="Admin" class="w-100 h-100 object-fit-cover" />
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1 px-3 px-lg-5 py-4">
+      <div class="mx-auto" style="max-width:56rem;">
+
+        <h2 class="fw-800 mb-1" style="font-size:2rem;letter-spacing:-0.03em;">Configurações</h2>
+        <p class="text-muted-agro mb-5">Gerencie perfil, notificações e preferências do sistema.</p>
+
+        <!-- Settings tabs -->
+        <div class="d-flex gap-1 mb-5 p-1 rounded-xl" style="background:var(--agro-surface-container);width:fit-content;">
+          <button id="tab-perfil" class="btn btn-agro-primary px-4 py-2 tab-btn" style="font-size:0.875rem;" onclick="showTab('perfil')">Perfil</button>
+          <button id="tab-notif"  class="btn btn-agro-secondary px-4 py-2 tab-btn" style="font-size:0.875rem;" onclick="showTab('notif')">Notificações</button>
+          <button id="tab-sistema" class="btn btn-agro-secondary px-4 py-2 tab-btn" style="font-size:0.875rem;" onclick="showTab('sistema')">Sistema</button>
+        </div>
+
+        <!-- TAB: Perfil -->
+        <div id="pane-perfil">
+          <form id="formPerfil" novalidate>
+            <div class="d-flex flex-column gap-4">
+
+              <!-- Avatar section -->
+              <div class="section-card d-flex align-items-center gap-4 flex-wrap">
+                <div class="rounded-circle overflow-hidden flex-shrink-0" style="width:5rem;height:5rem;">
+                  <img src="https://ui-avatars.com/api/?name=Admin&background=17330e&color=fff&size=80" alt="Admin" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div>
+                  <p class="fw-700 mb-1" style="font-size:1rem;">Foto de Perfil</p>
+                  <p class="text-muted-agro mb-3" style="font-size:0.8125rem;">JPG ou PNG, máximo 2 MB.</p>
+                  <button type="button" class="btn btn-agro-secondary px-4 py-2" style="font-size:0.8125rem;">Alterar Foto</button>
+                </div>
+              </div>
+
+              <!-- Name / email / role -->
+              <div class="section-card">
+                <h3 class="fw-700 mb-4" style="font-size:1rem;">Dados Pessoais</h3>
+                <div class="row g-4">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="nomeCompleto">Nome Completo</label>
+                    <input type="text" id="nomeCompleto" class="form-control-agro" value="Usuário Administrador" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="cargo">Cargo</label>
+                    <input type="text" id="cargo" class="form-control-agro" value="Engenheiro Agrônomo" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control-agro" value="admin@agrostock.com.br" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" class="form-control-agro" value="(11) 98765-4321" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password section -->
+              <div class="section-card">
+                <h3 class="fw-700 mb-4" style="font-size:1rem;">Segurança</h3>
+                <div class="row g-4">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="senhaAtual">Senha Atual</label>
+                    <input type="password" id="senhaAtual" class="form-control-agro" placeholder="••••••••" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label-agro" for="novaSenha">Nova Senha</label>
+                    <input type="password" id="novaSenha" class="form-control-agro" placeholder="••••••••" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-3">
+                <button type="button" class="btn btn-agro-secondary px-5 py-2">Cancelar</button>
+                <button type="submit" class="btn btn-agro-primary px-5 py-2">Salvar Alterações</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB: Notificações -->
+        <div id="pane-notif" style="display:none;">
+          <div class="section-card d-flex flex-column gap-4">
+            <h3 class="fw-700 mb-2" style="font-size:1rem;">Preferências de Notificação</h3>
+
+            <!-- Toggle rows -->
+            <div class="d-flex justify-content-between align-items-center py-3" style="border-bottom:1px solid var(--agro-outline-variant);">
+              <div>
+                <p class="fw-700 mb-1" style="font-size:0.9375rem;">Alertas de Estoque Baixo</p>
+                <p class="text-muted-agro mb-0" style="font-size:0.8125rem;">Notificar quando um item atingir o nível mínimo.</p>
+              </div>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="notifBaixo" checked style="width:2.5rem;height:1.25rem;cursor:pointer;" />
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-3" style="border-bottom:1px solid var(--agro-outline-variant);">
+              <div>
+                <p class="fw-700 mb-1" style="font-size:0.9375rem;">Lotes com Validade Próxima</p>
+                <p class="text-muted-agro mb-0" style="font-size:0.8125rem;">Alertar 30 dias antes do vencimento.</p>
+              </div>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="notifValidade" checked style="width:2.5rem;height:1.25rem;cursor:pointer;" />
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-3" style="border-bottom:1px solid var(--agro-outline-variant);">
+              <div>
+                <p class="fw-700 mb-1" style="font-size:0.9375rem;">Novas Entregas</p>
+                <p class="text-muted-agro mb-0" style="font-size:0.8125rem;">Avisar quando lotes chegarem ao armazém.</p>
+              </div>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="notifEntrega" style="width:2.5rem;height:1.25rem;cursor:pointer;" />
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-3">
+              <div>
+                <p class="fw-700 mb-1" style="font-size:0.9375rem;">Relatórios Semanais por E-mail</p>
+                <p class="text-muted-agro mb-0" style="font-size:0.8125rem;">Receber resumo toda segunda-feira às 08h.</p>
+              </div>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="notifEmail" checked style="width:2.5rem;height:1.25rem;cursor:pointer;" />
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-agro-primary px-5 py-2">Salvar Preferências</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: Sistema -->
+        <div id="pane-sistema" style="display:none;">
+          <div class="d-flex flex-column gap-4">
+
+            <div class="section-card">
+              <h3 class="fw-700 mb-4" style="font-size:1rem;">Propriedade Rural</h3>
+              <div class="row g-4">
+                <div class="col-12 col-md-6">
+                  <label class="form-label-agro" for="nomeFazenda">Nome da Fazenda</label>
+                  <input type="text" id="nomeFazenda" class="form-control-agro" value="Fazenda Central Valley" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label-agro" for="cidade">Cidade / Estado</label>
+                  <input type="text" id="cidade" class="form-control-agro" value="Ribeirão Preto – SP" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label-agro" for="areaTotal">Área Total (ha)</label>
+                  <input type="number" id="areaTotal" class="form-control-agro" value="850" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label-agro" for="moeda">Moeda</label>
+                  <select id="moeda" class="form-select-agro">
+                    <option selected>Real Brasileiro (BRL)</option>
+                    <option>Dólar Americano (USD)</option>
+                    <option>Euro (EUR)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-card">
+              <h3 class="fw-700 mb-4" style="font-size:1rem;">Zona de Perigo</h3>
+              <div class="alert-agro alert-agro-error mb-4">
+                <span class="material-symbols-outlined flex-shrink-0" style="font-size:1.1rem;">warning</span>
+                <div>
+                  <p class="fw-700 mb-1" style="font-size:0.8125rem;">Atenção</p>
+                  <p class="mb-0" style="font-size:0.75rem;">As ações abaixo são irreversíveis. Proceda com cuidado.</p>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap gap-3">
+                <button type="button" class="btn py-2 px-4 fw-700" style="background:var(--agro-error-container);color:var(--agro-error);border:none;border-radius:0.5rem;font-size:0.875rem;">
+                  Limpar Histórico de Alertas
+                </button>
+                <button type="button" class="btn py-2 px-4 fw-700" style="background:var(--agro-error);color:white;border:none;border-radius:0.5rem;font-size:0.875rem;">
+                  Redefinir Todo o Sistema
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-agro-primary px-5 py-2">Salvar Configurações</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span>© 2024 Ecossistema Digital AgroStock</span>
+      <div class="d-flex gap-4">
+        <a href="#">Protocolo de Privacidade</a>
+        <a href="#">Logs de Auditoria</a>
+      </div>
+    </footer>
+
+  </div><!-- /main-wrapper -->
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showTab(tab) {
+      ['perfil','notif','sistema'].forEach(t => {
+        document.getElementById('pane-' + t).style.display = t === tab ? '' : 'none';
+        const btn = document.getElementById('tab-' + t);
+        btn.className = btn.className.replace(/btn-agro-(primary|secondary)/, t === tab ? 'btn-agro-primary' : 'btn-agro-secondary');
+      });
+    }
+  </script>
+</body>
+</html>

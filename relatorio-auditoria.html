@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Auditoria — AgroStock · Atividade 08</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gd:  #17330e;
+      --gm:  #2d5a1a;
+      --ga:  #48663b;
+      --gl:  #e8f0e4;
+      --gp:  #f2f6f0;
+      --txt: #1a1a18;
+      --tx2: #4a5548;
+      --tx3: #7a8a76;
+      --cbg: #f4f7f2;
+      --bdr: #d5e0d0;
+      --bd2: #e8ede6;
+    }
+
+    @page { size: A4; margin: 2.2cm 1.9cm 2cm 2.2cm; }
+
+    html { font-size: 10.5pt; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: var(--txt);
+      background: #fff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Screen wrapper ──────────────────────────────────── */
+    @media screen {
+      body { background: #e8e6e0; padding: 1rem; }
+      .page-unit {
+        background: #fff;
+        max-width: 21cm;
+        margin: 0 auto 1.5rem;
+        padding: 2cm 2.2cm;
+        box-shadow: 0 4px 24px rgba(0,0,0,.10);
+      }
+    }
+    @media print {
+      .page-unit { padding: 0; }
+    }
+
+    /* ── Cover ───────────────────────────────────────────── */
+    .cover {
+      min-height: 25cm;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      page-break-after: always;
+    }
+
+    .cover-bar {
+      height: 7px;
+      background: var(--gd);
+      margin: 0 -2.2cm;
+      margin-bottom: 2.5rem;
+    }
+
+    .cover-institution {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7pt;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      border-left: 3px solid var(--gd);
+      padding-left: .7rem;
+      line-height: 1.5;
+    }
+
+    .cover-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3.5rem 0 2rem;
+    }
+
+    .cover-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7pt;
+      color: var(--ga);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      margin-bottom: 1rem;
+    }
+
+    .cover-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 38pt;
+      line-height: 1.05;
+      color: var(--gd);
+      letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title em {
+      font-style: italic;
+      color: var(--ga);
+    }
+
+    .cover-rule {
+      width: 3.5rem;
+      height: 2px;
+      background: var(--gd);
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: var(--tx2);
+      font-weight: 300;
+      max-width: 68%;
+      line-height: 1.55;
+    }
+
+    .cover-footer {
+      padding-top: 2rem;
+      margin-top: auto;
+      border-top: 1px solid var(--bdr);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem 2rem;
+    }
+
+    .cover-field label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .cover-field span {
+      font-size: 9.5pt;
+      color: var(--txt);
+      font-weight: 600;
+    }
+
+    /* ── TOC ─────────────────────────────────────────────── */
+    .toc { page-break-after: always; }
+
+    .toc-heading {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 22pt;
+      color: var(--gd);
+      margin-bottom: 1.5rem;
+      padding-bottom: .7rem;
+      border-bottom: 2px solid var(--gd);
+    }
+
+    .toc-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      color: var(--ga);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      margin: 1.25rem 0 .5rem;
+    }
+
+    .toc-list { list-style: none; }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      gap: .5rem;
+      padding: .28rem 0;
+      border-bottom: 1px dotted var(--bdr);
+    }
+
+    .toc-n {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7pt;
+      color: var(--tx3);
+      min-width: 1.6rem;
+    }
+
+    .toc-lbl { flex: 1; font-size: 9.5pt; }
+
+    /* ── Generic section ─────────────────────────────────── */
+    .section { page-break-before: always; }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--gd);
+    }
+
+    .section-ghost-num {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 42pt;
+      line-height: 1;
+      color: var(--gl);
+      -webkit-text-stroke: 1.5px var(--bdr);
+      min-width: 2.8rem;
+      text-align: right;
+      user-select: none;
+    }
+
+    .section-head-body { flex: 1; padding-top: .3rem; }
+
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      color: var(--ga);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      display: block;
+      margin-bottom: .2rem;
+    }
+
+    .section-h {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 19pt;
+      color: var(--gd);
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      font-size: 9.5pt;
+      color: var(--tx2);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      max-width: 90%;
+    }
+
+    /* ── Component 2-column grid ─────────────────────────── */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .comp-card {
+      border: 1px solid var(--bdr);
+      border-radius: 6px;
+      overflow: hidden;
+      break-inside: avoid;
+    }
+
+    .comp-card-hd {
+      background: var(--gp);
+      border-bottom: 1px solid var(--bdr);
+      padding: .5rem .8rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .comp-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      font-weight: 600;
+      color: #fff;
+      background: var(--gd);
+      border-radius: 3px;
+      padding: 1px 5px;
+      min-width: 1.4rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .comp-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 10.5pt;
+      color: var(--gd);
+    }
+
+    .comp-body { padding: .7rem .8rem; }
+
+    .comp-body p {
+      font-size: 8.5pt;
+      color: var(--tx2);
+      line-height: 1.65;
+      margin-bottom: .4rem;
+    }
+
+    .comp-where-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      display: block;
+      margin: .5rem 0 .25rem;
+    }
+
+    .tag-file {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      color: var(--ga);
+      background: var(--gl);
+      border-radius: 3px;
+      padding: 1px 5px;
+      display: inline-block;
+      margin: 0 2px 3px;
+    }
+
+    /* ── Code blocks ─────────────────────────────────────── */
+    pre {
+      background: var(--cbg);
+      border: 1px solid var(--bdr);
+      border-left: 3px solid var(--ga);
+      border-radius: 0 4px 4px 0;
+      padding: .55rem .7rem;
+      overflow: hidden;
+      margin-top: .5rem;
+      break-inside: avoid;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.8pt;
+      color: var(--txt);
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .ct  { color: var(--gd); font-weight: 600; }   /* tag */
+    .ca  { color: var(--gm); }                      /* attr */
+    .cv  { color: #7a3b00; }                        /* value */
+    .cc  { color: var(--tx3); font-style: italic; } /* comment */
+
+    /* ── Analysis blocks ─────────────────────────────────── */
+    .analysis-block {
+      background: var(--gp);
+      border: 1px solid var(--bdr);
+      border-radius: 6px;
+      padding: .9rem 1.1rem;
+      margin-bottom: .9rem;
+      break-inside: avoid;
+    }
+
+    .analysis-block h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 12pt;
+      color: var(--gd);
+      margin-bottom: .45rem;
+    }
+
+    .analysis-block p {
+      font-size: 9pt;
+      color: var(--tx2);
+      line-height: 1.7;
+      margin-bottom: .35rem;
+    }
+
+    .analysis-block ul {
+      padding-left: 1.2rem;
+      margin-top: .3rem;
+    }
+
+    .analysis-block ul li {
+      font-size: 9pt;
+      color: var(--tx2);
+      line-height: 1.65;
+      margin-bottom: .2rem;
+    }
+
+    .analysis-block ul li strong { color: var(--txt); }
+
+    /* ── Sticky footer diagram ───────────────────────────── */
+    .sf-diagram {
+      border: 1.5px solid var(--bdr);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 1rem 0;
+      break-inside: avoid;
+    }
+
+    .sf-diag-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      padding: .35rem .7rem;
+      background: var(--bd2);
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .sf-diag-body {
+      padding: .7rem;
+      background: #fff;
+    }
+
+    .sf-wrapper-box {
+      border: 2px solid var(--ga);
+      border-radius: 4px;
+      padding: .45rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sf-wrapper-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      color: var(--ga);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: .2rem;
+    }
+
+    .sf-row {
+      border-radius: 3px;
+      padding: .3rem .55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--bdr);
+    }
+
+    .sf-row-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.8pt;
+      font-weight: 600;
+    }
+
+    .sf-row-cls {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      color: var(--ga);
+      background: #fff;
+      border: 1px solid var(--bdr);
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+
+    .sf-row.r-head { background: #dcecd6; }
+    .sf-row.r-main { background: #fff; border: 1px dashed var(--bdr); min-height: 3rem; }
+    .sf-row.r-foot { background: #b5d4a8; }
+
+    /* ── Inline code ─────────────────────────────────────── */
+    .ic {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      background: var(--cbg);
+      border: 1px solid var(--bdr);
+      border-radius: 3px;
+      padding: 0 4px;
+      color: var(--gm);
+    }
+
+    /* ── Utility ─────────────────────────────────────────── */
+    .mt1 { margin-top: .5rem; }
+    .mt2 { margin-top: 1rem; }
+    .mt3 { margin-top: 1.5rem; }
+    .mb1 { margin-bottom: .5rem; }
+
+    p { margin-bottom: .6rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .highlight-box {
+      border: 1px solid var(--bdr);
+      border-left: 4px solid var(--gd);
+      background: var(--gp);
+      border-radius: 0 5px 5px 0;
+      padding: .7rem 1rem;
+      margin: .75rem 0;
+      font-size: 9pt;
+      color: var(--tx2);
+      line-height: 1.65;
+      break-inside: avoid;
+    }
+
+    .highlight-box strong { color: var(--gd); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CAPA
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="cover">
+    <div class="cover-bar"></div>
+
+    <div class="cover-institution">
+      Disciplina: Desenvolvimento Web · Atividade 08<br>
+      Tecnologia: Bootstrap 5.3 via npm · Projeto AgroStock
+    </div>
+
+    <div class="cover-body">
+      <div class="cover-eyebrow">Relatório de Auditoria Técnica</div>
+
+      <h1 class="cover-title">
+        Análise de<br>
+        <em>Componentes</em><br>
+        Bootstrap 5.3
+      </h1>
+
+      <div class="cover-rule"></div>
+
+      <p class="cover-subtitle">
+        Documentação técnica dos componentes Bootstrap utilizados no sistema AgroStock,
+        com análise do sistema de Grid e Flexbox e explicação da implementação do rodapé fixo.
+      </p>
+    </div>
+
+    <div class="cover-footer">
+      <div class="cover-field">
+        <label>Projeto</label>
+        <span>AgroStock — Gestão de Insumos Agrícolas</span>
+      </div>
+      <div class="cover-field">
+        <label>Framework</label>
+        <span>Bootstrap 5.3.3 (npm local)</span>
+      </div>
+      <div class="cover-field">
+        <label>Páginas desenvolvidas</label>
+        <span>7 páginas HTML responsivas</span>
+      </div>
+      <div class="cover-field">
+        <label>Ano</label>
+        <span>2024</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SUMÁRIO
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="toc">
+    <h2 class="toc-heading">Sumário</h2>
+
+    <p class="toc-group-label">Seção 1 — Componentes Bootstrap</p>
+    <ul class="toc-list">
+      <li><span class="toc-n">1.1</span><span class="toc-lbl">Offcanvas — Sidebar Mobile Responsivo</span></li>
+      <li><span class="toc-n">1.2</span><span class="toc-lbl">Toast — Notificação de Preenchimento Automático</span></li>
+      <li><span class="toc-n">1.3</span><span class="toc-lbl">Modal — Diálogo de Confirmação de Exclusão</span></li>
+      <li><span class="toc-n">1.4</span><span class="toc-lbl">Badge — Indicadores de Status de Estoque</span></li>
+      <li><span class="toc-n">1.5</span><span class="toc-lbl">Table — Tabela Responsiva de Inventário</span></li>
+      <li><span class="toc-n">1.6</span><span class="toc-lbl">Progress — Barras de Nível de Estoque</span></li>
+      <li><span class="toc-n">1.7</span><span class="toc-lbl">Form — Formulário de Cadastro de Insumo</span></li>
+      <li><span class="toc-n">1.8</span><span class="toc-lbl">Form Switch — Toggles de Configurações</span></li>
+      <li><span class="toc-n">1.9</span><span class="toc-lbl">Button — Ações Primárias e Secundárias</span></li>
+      <li><span class="toc-n">1.10</span><span class="toc-lbl">Pagination — Navegação entre Páginas de Tabela</span></li>
+    </ul>
+
+    <p class="toc-group-label">Seção 2 — Análise de Layout</p>
+    <ul class="toc-list">
+      <li><span class="toc-n">2.1</span><span class="toc-lbl">Sistema de Grid de 12 colunas</span></li>
+      <li><span class="toc-n">2.2</span><span class="toc-lbl">Utilitários Flexbox do Bootstrap</span></li>
+      <li><span class="toc-n">2.3</span><span class="toc-lbl">Layout combinado: Grid + Flexbox</span></li>
+    </ul>
+
+    <p class="toc-group-label">Seção 3 — Rodapé Fixo (Sticky Footer)</p>
+    <ul class="toc-list">
+      <li><span class="toc-n">3.1</span><span class="toc-lbl">Técnica de implementação</span></li>
+      <li><span class="toc-n">3.2</span><span class="toc-lbl">Estrutura HTML e classes Bootstrap</span></li>
+      <li><span class="toc-n">3.3</span><span class="toc-lbl">CSS complementar customizado</span></li>
+    </ul>
+
+    <div class="highlight-box mt3">
+      <strong>Nota sobre o Bootstrap via npm:</strong> Este projeto referencia o Bootstrap diretamente da pasta
+      <span class="ic">node_modules/</span> instalada localmente via <span class="ic">npm install bootstrap</span>,
+      sem uso de CDN externo. Os arquivos referenciados são
+      <span class="ic">node_modules/bootstrap/dist/css/bootstrap.min.css</span> e
+      <span class="ic">node_modules/bootstrap/dist/js/bootstrap.bundle.min.js</span>.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SEÇÃO 1 — COMPONENTES (1–5)
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="section">
+    <div class="section-head">
+      <div class="section-ghost-num">1</div>
+      <div class="section-head-body">
+        <span class="section-eyebrow">Análise · Bootstrap 5.3</span>
+        <h2 class="section-h">Componentes Utilizados</h2>
+      </div>
+    </div>
+
+    <p class="section-intro">
+      A seguir são detalhados os 10 componentes Bootstrap 5.3 identificados no projeto AgroStock.
+      Para cada componente são apresentados: descrição funcional, páginas de uso e trecho de código real extraído do projeto.
+    </p>
+
+    <div class="comp-grid">
+
+      <!-- 1. Offcanvas -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">01</span>
+          <span class="comp-title">Offcanvas</span>
+        </div>
+        <div class="comp-body">
+          <p>Painel deslizante que emerge da lateral da tela. Utilizado como sidebar de navegação no modo mobile, substituindo a sidebar estática fixada que aparece apenas em telas ≥ 992 px (<span class="ic">d-lg-none</span>). Acionado pelo botão ☰ no cabeçalho, via atributos <span class="ic">data-bs-toggle</span> e <span class="ic">data-bs-target</span>.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">index.html</span>
+          <span class="tag-file">estoque.html</span>
+          <span class="tag-file">cadastro.html</span>
+          <span class="tag-file">detalhes.html</span>
+          <span class="tag-file">editar.html</span>
+          <span class="tag-file">relatorios.html</span>
+          <span class="tag-file">configuracoes.html</span>
+<pre><code><span class="cc">&lt;!-- Trigger (botão ☰ no header) --&gt;</span>
+<span class="ct">&lt;button</span> <span class="ca">data-bs-toggle</span>=<span class="cv">"offcanvas"</span>
+        <span class="ca">data-bs-target</span>=<span class="cv">"#mobileSidebar"</span><span class="ct">&gt;</span>
+  ☰
+<span class="ct">&lt;/button&gt;</span>
+
+<span class="cc">&lt;!-- Painel --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"offcanvas offcanvas-start"</span>
+     <span class="ca">id</span>=<span class="cv">"mobileSidebar"</span> <span class="ca">tabindex</span>=<span class="cv">"-1"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"offcanvas-header"</span><span class="ct">&gt;</span>...<span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"offcanvas-body"</span><span class="ct">&gt;</span>...<span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 2. Toast -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">02</span>
+          <span class="comp-title">Toast</span>
+        </div>
+        <div class="comp-body">
+          <p>Notificação temporária (snackbar) exibida no canto inferior direito da tela. Disparada via JavaScript ao carregar as páginas de cadastro e edição, informando ao usuário que o endereço foi preenchido automaticamente via API dos Correios (CEP). Usa <span class="ic">aria-live="assertive"</span> para acessibilidade.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">cadastro.html</span>
+          <span class="tag-file">editar.html</span>
+<pre><code><span class="ct">&lt;div</span> <span class="ca">id</span>=<span class="cv">"toastCEP"</span>
+     <span class="ca">class</span>=<span class="cv">"toast align-items-center"</span>
+     <span class="ca">role</span>=<span class="cv">"alert"</span>
+     <span class="ca">aria-live</span>=<span class="cv">"assertive"</span>
+     <span class="ca">aria-atomic</span>=<span class="cv">"true"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"d-flex gap-3 p-3"</span><span class="ct">&gt;</span>
+    ...conteúdo...
+    <span class="ct">&lt;button</span> <span class="ca">data-bs-dismiss</span>=<span class="cv">"toast"</span><span class="ct">&gt;</span>✕<span class="ct">&lt;/button&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span>
+
+<span class="cc">&lt;!-- Inicialização JS --&gt;</span>
+<span class="ct">&lt;script&gt;</span>
+  const t = new bootstrap.Toast(
+    document.getElementById('toastCEP'));
+  t.show();
+<span class="ct">&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 3. Modal -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">03</span>
+          <span class="comp-title">Modal</span>
+        </div>
+        <div class="comp-body">
+          <p>Diálogo sobreposto que bloqueia a interação com o restante da página enquanto ativo. Aplicado na tela de detalhes do insumo como confirmação antes da exclusão do registro, prevenindo remoções acidentais. A classe <span class="ic">modal-dialog-centered</span> centraliza verticalmente.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">detalhes.html</span>
+<pre><code><span class="cc">&lt;!-- Botão que abre o modal --&gt;</span>
+<span class="ct">&lt;button</span> <span class="ca">data-bs-toggle</span>=<span class="cv">"modal"</span>
+        <span class="ca">data-bs-target</span>=<span class="cv">"#modalExcluir"</span><span class="ct">&gt;</span>
+  Excluir Produto
+<span class="ct">&lt;/button&gt;</span>
+
+<span class="cc">&lt;!-- Estrutura do Modal --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal fade"</span> <span class="ca">id</span>=<span class="cv">"modalExcluir"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal-dialog modal-dialog-centered"</span><span class="ct">&gt;</span>
+    <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal-content"</span><span class="ct">&gt;</span>
+      <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal-header"</span><span class="ct">&gt;</span>...<span class="ct">&lt;/div&gt;</span>
+      <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal-body"</span><span class="ct">&gt;</span>...<span class="ct">&lt;/div&gt;</span>
+      <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"modal-footer"</span><span class="ct">&gt;</span>
+        <span class="ct">&lt;button</span> <span class="ca">data-bs-dismiss</span>=<span class="cv">"modal"</span><span class="ct">&gt;</span>Cancelar<span class="ct">&lt;/button&gt;</span>
+      <span class="ct">&lt;/div&gt;</span>
+    <span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 4. Badge -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">04</span>
+          <span class="comp-title">Badge</span>
+        </div>
+        <div class="comp-body">
+          <p>Rótulo compacto inline utilizado para indicar o estado atual de cada item de estoque. Quatro variações semânticas foram implementadas com cores distintas baseadas nas variáveis CSS do tema: <em>Em Estoque</em> (verde), <em>Estoque Baixo</em> (âmbar), <em>Em Trânsito</em> (azul) e <em>Esgotado</em> (vermelho).</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">index.html</span>
+          <span class="tag-file">estoque.html</span>
+          <span class="tag-file">detalhes.html</span>
+          <span class="tag-file">relatorios.html</span>
+<pre><code><span class="cc">&lt;!-- Classe base Bootstrap + modificador custom --&gt;</span>
+<span class="ct">&lt;span</span> <span class="ca">class</span>=<span class="cv">"badge-status badge-em-estoque"</span><span class="ct">&gt;</span>
+  Em Estoque
+<span class="ct">&lt;/span&gt;</span>
+<span class="ct">&lt;span</span> <span class="ca">class</span>=<span class="cv">"badge-status badge-estoque-baixo"</span><span class="ct">&gt;</span>
+  Estoque Baixo
+<span class="ct">&lt;/span&gt;</span>
+<span class="ct">&lt;span</span> <span class="ca">class</span>=<span class="cv">"badge-status badge-em-transito"</span><span class="ct">&gt;</span>
+  Em Trânsito
+<span class="ct">&lt;/span&gt;</span>
+<span class="ct">&lt;span</span> <span class="ca">class</span>=<span class="cv">"badge-status badge-esgotado"</span><span class="ct">&gt;</span>
+  Esgotado
+<span class="ct">&lt;/span&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 5. Table -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">05</span>
+          <span class="comp-title">Table</span>
+        </div>
+        <div class="comp-body">
+          <p>Tabela responsiva com rolagem horizontal em viewports estreitos. O wrapper <span class="ic">table-responsive</span> do Bootstrap garante que a tabela nunca quebre o layout em dispositivos móveis, adicionando <span class="ic">overflow-x: auto</span> automaticamente. Exibe inventário completo com 8 colunas de dados.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">estoque.html</span>
+          <span class="tag-file">index.html</span>
+          <span class="tag-file">detalhes.html</span>
+          <span class="tag-file">relatorios.html</span>
+<pre><code><span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"table-responsive"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;table</span> <span class="ca">class</span>=<span class="cv">"table table-agro"</span><span class="ct">&gt;</span>
+    <span class="ct">&lt;thead&gt;</span>
+      <span class="ct">&lt;tr&gt;</span>
+        <span class="ct">&lt;th&gt;</span>Produto<span class="ct">&lt;/th&gt;</span>
+        <span class="ct">&lt;th&gt;</span>Categoria<span class="ct">&lt;/th&gt;</span>
+        <span class="ct">&lt;th&gt;</span>Qtd. Atual<span class="ct">&lt;/th&gt;</span>
+        <span class="ct">&lt;th&gt;</span>Status<span class="ct">&lt;/th&gt;</span>
+      <span class="ct">&lt;/tr&gt;</span>
+    <span class="ct">&lt;/thead&gt;</span>
+    <span class="ct">&lt;tbody&gt;</span>...<span class="ct">&lt;/tbody&gt;</span>
+  <span class="ct">&lt;/table&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+    </div><!-- /comp-grid (1–5) -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SEÇÃO 1 cont. — COMPONENTES (6–10)
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="section">
+    <div class="section-head">
+      <div class="section-ghost-num">1</div>
+      <div class="section-head-body">
+        <span class="section-eyebrow">Continuação · Componentes 6 a 10</span>
+        <h2 class="section-h">Componentes Utilizados</h2>
+      </div>
+    </div>
+
+    <div class="comp-grid">
+
+      <!-- 6. Progress -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">06</span>
+          <span class="comp-title">Progress</span>
+        </div>
+        <div class="comp-body">
+          <p>Barra de progresso visual que representa o nível de ocupação do estoque em percentual. O container externo (<span class="ic">progress-agro</span>) define altura e fundo, enquanto a barra interna (<span class="ic">bar</span>) tem largura dinâmica via <span class="ic">style="width:X%"</span>. Quatro variações de cor mapeiam categorias distintas.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">index.html</span>
+          <span class="tag-file">estoque.html</span>
+          <span class="tag-file">detalhes.html</span>
+          <span class="tag-file">relatorios.html</span>
+<pre><code><span class="cc">&lt;!-- Barra primária (verde) a 85% --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"progress-agro"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"bar bar-primary"</span>
+       <span class="ca">style</span>=<span class="cv">"width:85%"</span><span class="ct">&gt;&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span>
+
+<span class="cc">&lt;!-- Barra de erro (vermelho) a 15% --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"progress-agro"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"bar bar-error"</span>
+       <span class="ca">style</span>=<span class="cv">"width:15%"</span><span class="ct">&gt;&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 7. Form Controls -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">07</span>
+          <span class="comp-title">Form (Controls)</span>
+        </div>
+        <div class="comp-body">
+          <p>Conjunto de controles de formulário Bootstrap aplicados na tela de cadastro de insumos, organizado em grid de 12 colunas. Inclui <span class="ic">form-control</span> (inputs de texto, número, data), <span class="ic">form-select</span> (dropdowns de categoria e fornecedor) e <span class="ic">form-label</span> para acessibilidade semântica.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">cadastro.html</span>
+          <span class="tag-file">editar.html</span>
+          <span class="tag-file">configuracoes.html</span>
+<pre><code><span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"row g-3"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"col-12 col-md-8"</span><span class="ct">&gt;</span>
+    <span class="ct">&lt;label</span> <span class="ca">class</span>=<span class="cv">"form-label-agro"</span>
+           <span class="ca">for</span>=<span class="cv">"nomeProduto"</span><span class="ct">&gt;</span>Produto<span class="ct">&lt;/label&gt;</span>
+    <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cv">"text"</span>
+           <span class="ca">class</span>=<span class="cv">"form-control-agro"</span>
+           <span class="ca">id</span>=<span class="cv">"nomeProduto"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"col-12 col-md-4"</span><span class="ct">&gt;</span>
+    <span class="ct">&lt;label</span> <span class="ca">class</span>=<span class="cv">"form-label-agro"</span>
+           <span class="ca">for</span>=<span class="cv">"categoria"</span><span class="ct">&gt;</span>Categoria<span class="ct">&lt;/label&gt;</span>
+    <span class="ct">&lt;select</span> <span class="ca">class</span>=<span class="cv">"form-select-agro"</span>
+            <span class="ca">id</span>=<span class="cv">"categoria"</span><span class="ct">&gt;</span>...<span class="ct">&lt;/select&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 8. Form Switch -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">08</span>
+          <span class="comp-title">Form Switch</span>
+        </div>
+        <div class="comp-body">
+          <p>Variação do componente de checkbox que renderiza como um toggle visual, utilizado na página de configurações para ativar/desativar preferências de notificação. Implementado com <span class="ic">form-check form-switch</span> em conjunto com <span class="ic">role="switch"</span> para acessibilidade ARIA correta.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">configuracoes.html</span>
+<pre><code><span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"form-check form-switch mb-0"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;input</span>
+    <span class="ca">class</span>=<span class="cv">"form-check-input"</span>
+    <span class="ca">type</span>=<span class="cv">"checkbox"</span>
+    <span class="ca">role</span>=<span class="cv">"switch"</span>
+    <span class="ca">id</span>=<span class="cv">"notifEmail"</span>
+    <span class="ca">checked</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;label</span>
+    <span class="ca">class</span>=<span class="cv">"form-check-label"</span>
+    <span class="ca">for</span>=<span class="cv">"notifEmail"</span><span class="ct">&gt;</span>
+    Notificações por e-mail
+  <span class="ct">&lt;/label&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 9. Button -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">09</span>
+          <span class="comp-title">Button</span>
+        </div>
+        <div class="comp-body">
+          <p>Componente de botão com dois estilos temáticos derivados da classe base <span class="ic">btn</span> do Bootstrap: <em>primário</em> (preenchido, verde escuro) para ações de confirmação e <em>secundário</em> (contornado) para ações alternativas. Aplicados com utilitários de espaçamento <span class="ic">px-*</span> e <span class="ic">py-*</span>.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">Todas as páginas</span>
+<pre><code><span class="cc">&lt;!-- Ação principal --&gt;</span>
+<span class="ct">&lt;button</span> <span class="ca">type</span>=<span class="cv">"submit"</span>
+        <span class="ca">class</span>=<span class="cv">"btn btn-agro-primary px-5 py-2"</span><span class="ct">&gt;</span>
+  Salvar Produto
+<span class="ct">&lt;/button&gt;</span>
+
+<span class="cc">&lt;!-- Ação alternativa (como link) --&gt;</span>
+<span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cv">"estoque.html"</span>
+   <span class="ca">class</span>=<span class="cv">"btn btn-agro-secondary px-4 py-2"</span><span class="ct">&gt;</span>
+  Cancelar
+<span class="ct">&lt;/a&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- 10. Pagination -->
+      <div class="comp-card">
+        <div class="comp-card-hd">
+          <span class="comp-badge">10</span>
+          <span class="comp-title">Pagination</span>
+        </div>
+        <div class="comp-body">
+          <p>Navegação entre páginas de uma listagem de dados, implementada como lista <span class="ic">&lt;ul&gt;</span> com itens <span class="ic">&lt;li&gt;&lt;a&gt;</span>. A página ativa recebe a classe <span class="ic">active</span>. Aparece abaixo das tabelas de estoque e histórico de alertas, permitindo navegar grandes conjuntos de registros sem recarregar a página.</p>
+          <span class="comp-where-lbl">Presente em</span>
+          <span class="tag-file">estoque.html</span>
+          <span class="tag-file">relatorios.html</span>
+<pre><code><span class="ct">&lt;ul</span> <span class="ca">class</span>=<span class="cv">"pagination-agro"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span> <span class="ca">aria-label</span>=<span class="cv">"Anterior"</span><span class="ct">&gt;</span>«<span class="ct">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="ct">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span> <span class="ca">class</span>=<span class="cv">"active"</span><span class="ct">&gt;</span>1<span class="ct">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="ct">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ct">&gt;</span>2<span class="ct">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="ct">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ct">&gt;</span>3<span class="ct">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="ct">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span> <span class="ca">aria-label</span>=<span class="cv">"Próximo"</span><span class="ct">&gt;</span>»<span class="ct">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="ct">&lt;/ul&gt;</span></code></pre>
+        </div>
+      </div>
+
+    </div><!-- /comp-grid (6–10) -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SEÇÃO 2 — ANÁLISE GRID / FLEXBOX
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="section">
+    <div class="section-head">
+      <div class="section-ghost-num">2</div>
+      <div class="section-head-body">
+        <span class="section-eyebrow">Layout · Bootstrap 5.3</span>
+        <h2 class="section-h">Análise de Grid e Flexbox</h2>
+      </div>
+    </div>
+
+    <p class="section-intro">
+      O AgroStock combina o sistema de Grid de 12 colunas do Bootstrap com os utilitários Flexbox
+      para construir layouts responsivos sem escrever CSS de posicionamento manual.
+      Cada tipo de layout foi escolhido conforme a natureza do conteúdo.
+    </p>
+
+    <!-- 2.1 Grid -->
+    <div class="analysis-block">
+      <h3>2.1 — Sistema de Grid de 12 Colunas</h3>
+      <p>
+        O Bootstrap divide cada linha (<span class="ic">row</span>) em 12 colunas virtuais.
+        As colunas (<span class="ic">col-*</span>) definem quantas dessas 12 colunas um elemento ocupa,
+        com variações por breakpoint (<span class="ic">col-12</span>, <span class="ic">col-md-6</span>, <span class="ic">col-lg-3</span> etc.).
+        No AgroStock, o Grid foi usado principalmente em dois contextos:
+      </p>
+      <ul>
+        <li><strong>Cards KPI do Dashboard (index.html):</strong> Quatro métricas dispostas como <span class="ic">col-12 col-md-6 col-lg-3</span> — empilhadas no mobile, 2 colunas no tablet, 4 no desktop.</li>
+        <li><strong>Formulários assimétricos (cadastro.html, editar.html):</strong> Layout de <span class="ic">col-12 col-lg-8</span> para o formulário principal e <span class="ic">col-12 col-lg-4</span> para o painel lateral de resumo, criando proporção 2:1.</li>
+      </ul>
+<pre><code><span class="cc">&lt;!-- Grid KPI: 4 colunas no desktop, 2 no tablet, 1 no mobile --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"row g-4"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"col-12 col-md-6 col-lg-3"</span><span class="ct">&gt;</span>
+    <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"kpi-card"</span><span class="ct">&gt;</span>Total em Estoque<span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+  <span class="cc">&lt;!-- Repetido 3x para os outros KPIs --&gt;</span>
+<span class="ct">&lt;/div&gt;</span>
+
+<span class="cc">&lt;!-- Layout assimétrico do formulário --&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"row g-4"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"col-12 col-lg-8"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Seções do formulário --&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"col-12 col-lg-4"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Painel de resumo lateral --&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/div&gt;</span></code></pre>
+    </div>
+
+    <!-- 2.2 Flexbox -->
+    <div class="analysis-block">
+      <h3>2.2 — Utilitários Flexbox</h3>
+      <p>
+        Os utilitários Flexbox do Bootstrap (<span class="ic">d-flex</span>, <span class="ic">flex-*</span>, <span class="ic">justify-content-*</span>, <span class="ic">align-items-*</span>, <span class="ic">gap-*</span>)
+        foram amplamente usados para alinhar elementos dentro de cards, cabeçalhos e linhas de ação.
+        Diferentemente do Grid (que organiza blocos maiores em colunas), o Flexbox foi aplicado em microcomposições internas:
+      </p>
+      <ul>
+        <li><strong>Cabeçalho da página (top-header):</strong> <span class="ic">d-flex justify-content-between align-items-center</span> — logo à esquerda, ações à direita.</li>
+        <li><strong>Linhas de ação acima das tabelas:</strong> <span class="ic">d-flex flex-md-row gap-2</span> — filtros e botões dispostos horizontalmente com quebra automática no mobile via <span class="ic">flex-wrap</span>.</li>
+        <li><strong>Items da sidebar:</strong> <span class="ic">d-flex flex-column gap-1</span> — links empilhados verticalmente com espaçamento uniforme.</li>
+        <li><strong>Barra de KPI da tabela:</strong> <span class="ic">d-flex align-items-center gap-3</span> — ícone + barra de progresso + valor numérico na mesma linha.</li>
+      </ul>
+<pre><code><span class="cc">&lt;!-- Cabeçalho com logo + ações --&gt;</span>
+<span class="ct">&lt;header</span> <span class="ca">class</span>=<span class="cv">"top-header d-flex
+         justify-content-between align-items-center
+         px-4"</span><span class="ct">&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"d-flex align-items-center gap-3"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Logo + título --&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"d-flex align-items-center gap-2 ms-auto"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Botões de ação --&gt;</span>
+  <span class="ct">&lt;/div&gt;</span>
+<span class="ct">&lt;/header&gt;</span></code></pre>
+    </div>
+
+    <!-- 2.3 Combinação -->
+    <div class="analysis-block">
+      <h3>2.3 — Layout Combinado: Grid + Flexbox</h3>
+      <p>
+        Na tela de estoque (<span class="ic">estoque.html</span>), os dois sistemas coexistem no mesmo nível de DOM:
+        o Grid posiciona os blocos bento de analytics (estatísticas rápidas) e a área de tabela em colunas responsivas,
+        enquanto o Flexbox organiza os elementos internos de cada bloco. Essa combinação é a prática recomendada pelo Bootstrap:
+        <strong>Grid para estrutura macro, Flexbox para microalinhamentos.</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SEÇÃO 3 — RODAPÉ FIXO
+═══════════════════════════════════════════════════════════ -->
+<div class="page-unit">
+  <div class="section">
+    <div class="section-head">
+      <div class="section-ghost-num">3</div>
+      <div class="section-head-body">
+        <span class="section-eyebrow">Implementação · Sticky Footer</span>
+        <h2 class="section-h">Rodapé Fixo ao Fundo da Página</h2>
+      </div>
+    </div>
+
+    <p class="section-intro">
+      O rodapé fixo (sticky footer) é um padrão de layout onde o rodapé sempre permanece na parte inferior
+      da tela — mesmo quando o conteúdo é curto e não preenche a altura total da viewport.
+      O AgroStock implementa esse padrão usando exclusivamente utilitários Flexbox do Bootstrap,
+      sem JavaScript ou posicionamento absoluto.
+    </p>
+
+    <!-- 3.1 Técnica -->
+    <div class="analysis-block">
+      <h3>3.1 — A Técnica: Coluna Flexível com Elemento Expansivo</h3>
+      <p>
+        A técnica funciona transformando o contêiner principal em uma <strong>coluna flex de altura mínima de 100% da viewport</strong>.
+        O elemento <span class="ic">&lt;main&gt;</span> recebe <span class="ic">flex-grow: 1</span>,
+        o que instrui o Flexbox a expandir esse elemento para <strong>preencher todo o espaço disponível restante</strong>
+        entre o cabeçalho e o rodapé. O rodapé, sendo o último filho sem <span class="ic">flex-grow</span>,
+        naturalmente ocupa apenas sua altura intrínseca — e sempre ao final da coluna.
+      </p>
+    </div>
+
+    <!-- Diagrama -->
+    <div class="sf-diagram">
+      <div class="sf-diag-title">Diagrama Visual — Estrutura de Colunas Flex</div>
+      <div class="sf-diag-body">
+        <div class="sf-wrapper-box">
+          <div class="sf-wrapper-label">.main-wrapper · display:flex · flex-direction:column · min-height:100vh</div>
+          <div class="sf-row r-head">
+            <span class="sf-row-lbl">‹header› — Cabeçalho fixo</span>
+            <span class="sf-row-cls">top-header</span>
+          </div>
+          <div class="sf-row r-main">
+            <span class="sf-row-lbl">‹main› — Conteúdo da página · <em>EXPANDE para preencher espaço vazio</em></span>
+            <span class="sf-row-cls">flex-grow-1</span>
+          </div>
+          <div class="sf-row r-foot">
+            <span class="sf-row-lbl">‹footer› — Rodapé · sempre empurrado ao fundo</span>
+            <span class="sf-row-cls">app-footer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 HTML -->
+    <div class="analysis-block">
+      <h3>3.2 — Estrutura HTML com Classes Bootstrap</h3>
+      <p>
+        As classes Bootstrap usadas são <span class="ic">d-flex</span>, <span class="ic">flex-column</span> e <span class="ic">min-vh-100</span> no wrapper,
+        e <span class="ic">flex-grow-1</span> no elemento <span class="ic">&lt;main&gt;</span>.
+        Nenhuma das classes está no rodapé — ele simplesmente "cai para o fundo" por ser o último filho da coluna flex.
+      </p>
+<pre><code><span class="cc">&lt;!--
+  Wrapper: coluna flex com altura mínima = 100vh
+  Bootstrap classes:
+    d-flex       → display: flex
+    flex-column  → flex-direction: column
+    min-vh-100   → min-height: 100vh
+--&gt;</span>
+<span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"main-wrapper d-flex flex-column min-vh-100"</span><span class="ct">&gt;</span>
+
+  <span class="ct">&lt;header</span> <span class="ca">class</span>=<span class="cv">"top-header"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Cabeçalho sticky (position:sticky; top:0) --&gt;</span>
+  <span class="ct">&lt;/header&gt;</span>
+
+  <span class="ct">&lt;main</span> <span class="ca">class</span>=<span class="cv">"flex-grow-1 px-3 px-lg-5 py-4"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!--
+      flex-grow-1 → flex-grow: 1
+      Este elemento cresce para preencher TODO
+      o espaço disponível entre header e footer.
+    --&gt;</span>
+  <span class="ct">&lt;/main&gt;</span>
+
+  <span class="ct">&lt;footer</span> <span class="ca">class</span>=<span class="cv">"app-footer d-flex
+    justify-content-between align-items-center"</span><span class="ct">&gt;</span>
+    <span class="cc">&lt;!-- Sempre ao fundo — sem classe especial necessária --&gt;</span>
+    <span class="ct">&lt;span&gt;</span>© 2024 Ecossistema Digital AgroStock<span class="ct">&lt;/span&gt;</span>
+    <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cv">"d-flex gap-4"</span><span class="ct">&gt;</span>
+      <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ct">&gt;</span>Privacidade<span class="ct">&lt;/a&gt;</span>
+      <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ct">&gt;</span>Suporte<span class="ct">&lt;/a&gt;</span>
+    <span class="ct">&lt;/div&gt;</span>
+  <span class="ct">&lt;/footer&gt;</span>
+
+<span class="ct">&lt;/div&gt;</span><span class="cc">&lt;!-- /main-wrapper --&gt;</span></code></pre>
+    </div>
+
+    <!-- 3.3 CSS -->
+    <div class="analysis-block">
+      <h3>3.3 — CSS Complementar em assets/css/custom.css</h3>
+      <p>
+        O Bootstrap cuida do layout vertical (coluna flex + expansão). O CSS customizado adiciona apenas o deslocamento horizontal
+        (<span class="ic">margin-left</span>) necessário para que o conteúdo não fique abaixo da sidebar fixa no desktop.
+        No mobile, a sidebar desaparece e a margem é zerada.
+      </p>
+<pre><code><span class="cc">/* Empurra o wrapper para além da sidebar fixa (256px) */</span>
+.main-wrapper {
+  margin-left: var(--sidebar-width); <span class="cc">/* 256px */</span>
+}
+
+<span class="cc">/* No mobile (< 992px): sidebar some, margem vai a zero */</span>
+@media (max-width: 991.98px) {
+  .main-wrapper {
+    margin-left: 0;
+  }
+  .sidebar-static {
+    display: none !important;
+  }
+}
+
+<span class="cc">/* Estilos visuais do rodapé */</span>
+.app-footer {
+  background-color: var(--agro-surface-low);
+  border-top: 1px solid var(--agro-outline-variant);
+  padding: 1rem 2rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}</code></pre>
+
+      <div class="highlight-box mt2">
+        <strong>Resumo da técnica:</strong>
+        Três classes Bootstrap no wrapper (<span class="ic">d-flex flex-column min-vh-100</span>) +
+        uma classe no conteúdo (<span class="ic">flex-grow-1</span>) são suficientes para garantir
+        que o rodapé sempre esteja ao fundo da página em qualquer dispositivo,
+        sem uso de <span class="ic">position: fixed</span> (que removeria o rodapé do fluxo normal)
+        nem de <span class="ic">position: absolute</span> (que causaria sobreposição com o conteúdo).
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

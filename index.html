@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroStock — Painel de Controle</title>
+  <!-- Bootstrap 5.3 (npm local) -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <!-- Custom Theme -->
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body class="bg-surface-agro">
+
+  <!-- ═══════════════════════════════════════════════════════
+       OFFCANVAS SIDEBAR (mobile)
+  ════════════════════════════════════════════════════════ -->
+  <div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header border-bottom" style="border-color: var(--agro-outline-variant) !important;">
+      <div>
+        <span class="sidebar-brand">AgroStock</span>
+        <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body p-3 d-flex flex-column">
+      <nav class="d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-nav-link active">
+          <span class="material-symbols-outlined">dashboard</span> Painel
+        </a>
+        <a href="estoque.html" class="sidebar-nav-link">
+          <span class="material-symbols-outlined">inventory_2</span> Estoque
+        </a>
+        <a href="relatorios.html" class="sidebar-nav-link">
+          <span class="material-symbols-outlined">analytics</span> Relatórios
+        </a>
+        <a href="configuracoes.html" class="sidebar-nav-link">
+          <span class="material-symbols-outlined">settings</span> Configurações
+        </a>
+      </nav>
+      <div class="mt-auto pt-3" style="border-top: 1px solid var(--agro-outline-variant);">
+        <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+          <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+        </a>
+        <a href="#" class="sidebar-nav-link">
+          <span class="material-symbols-outlined">help_outline</span> Suporte
+        </a>
+        <a href="#" class="sidebar-nav-link">
+          <span class="material-symbols-outlined">logout</span> Sair
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SIDEBAR ESTÁTICA (desktop ≥ lg)
+  ════════════════════════════════════════════════════════ -->
+  <aside class="sidebar-static d-none d-lg-flex flex-column">
+    <div class="mb-4 ps-1">
+      <a href="index.html" class="sidebar-brand d-block">AgroStock</a>
+      <p class="sidebar-subtitle mb-0 mt-1">Agrônomo Digital</p>
+    </div>
+    <nav class="d-flex flex-column gap-1 flex-grow-1">
+      <a href="index.html" class="sidebar-nav-link active">
+        <span class="material-symbols-outlined">dashboard</span> Painel
+      </a>
+      <a href="estoque.html" class="sidebar-nav-link">
+        <span class="material-symbols-outlined">inventory_2</span> Estoque
+      </a>
+      <a href="relatorios.html" class="sidebar-nav-link">
+        <span class="material-symbols-outlined">analytics</span> Relatórios
+      </a>
+      <a href="configuracoes.html" class="sidebar-nav-link">
+        <span class="material-symbols-outlined">settings</span> Configurações
+      </a>
+    </nav>
+    <div class="mt-auto pt-3" style="border-top: 1px solid var(--agro-outline-variant);">
+      <a href="cadastro.html" class="btn btn-agro-primary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">add</span> Novo Insumo
+      </a>
+      <a href="#" class="sidebar-nav-link">
+        <span class="material-symbols-outlined">help_outline</span> Suporte
+      </a>
+      <a href="#" class="sidebar-nav-link">
+        <span class="material-symbols-outlined">logout</span> Sair
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN WRAPPER — sticky footer via d-flex + flex-grow-1
+  ════════════════════════════════════════════════════════ -->
+  <div class="main-wrapper d-flex flex-column min-vh-100">
+
+    <!-- ── TOP HEADER (Navbar) ──────────────────────────── -->
+    <header class="top-header d-flex align-items-center px-3 px-lg-4 gap-3">
+      <!-- Hamburger (mobile) -->
+      <button class="btn-icon d-lg-none" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
+              aria-controls="mobileSidebar" aria-label="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+
+      <!-- Search -->
+      <div class="search-wrap d-none d-md-block">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" class="search-input" placeholder="Buscar estoque, lotes ou fornecedores..." />
+      </div>
+
+
+      <!-- Right actions -->
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <button class="btn-icon position-relative" aria-label="Notificações">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="btn-icon" aria-label="Histórico">
+          <span class="material-symbols-outlined">history</span>
+        </button>
+        <div class="rounded-circle overflow-hidden ms-1" style="width:2rem;height:2rem;background:var(--agro-surface-high);">
+          <img src="https://ui-avatars.com/api/?name=Admin&background=17330e&color=fff&size=32" alt="Admin" class="w-100 h-100 object-fit-cover" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ── MAIN CONTENT ─────────────────────────────────── -->
+    <main class="flex-grow-1 px-3 px-lg-5 py-4">
+
+      <!-- Page header -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-4 gap-3">
+        <div>
+          <h2 class="fw-800 mb-1" style="font-size:2.25rem;line-height:1.1;letter-spacing:-0.03em;">
+            Inteligência de Estoque
+          </h2>
+          <p class="text-muted-agro mb-0">Monitoramento em tempo real dos seus ativos agrícolas.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="relatorios.html" class="btn btn-agro-secondary px-4 py-2">Gerar Relatório</a>
+        </div>
+      </div>
+
+      <!-- KPI Cards — Bootstrap Grid -->
+      <div class="row g-4 mb-5">
+        <!-- Large KPI -->
+        <div class="col-12 col-md-6">
+          <div class="kpi-card kpi-card-primary h-100" style="min-height:200px;">
+            <p class="fs-label fw-800 text-uppercase tracking-widest text-muted-agro mb-2">Valor Total do Portfólio</p>
+            <p class="fw-800 text-primary-agro mb-2" style="font-family:'Manrope',sans-serif;font-size:2.5rem;line-height:1;">
+              R$ 1.284.500,00
+            </p>
+            <div class="d-flex align-items-center gap-2 text-primary-agro fw-700" style="font-size:0.875rem;">
+              <span class="material-symbols-outlined" style="font-size:1rem;">trending_up</span>
+              +12,4% vs último trimestre
+            </div>
+            <!-- decorative icon -->
+            <span class="material-symbols-outlined position-absolute" style="font-size:8rem;right:-1.5rem;bottom:-1.5rem;opacity:0.05;font-variation-settings:'FILL' 1;">account_balance_wallet</span>
+          </div>
+        </div>
+
+        <!-- Error KPI -->
+        <div class="col-12 col-md-3">
+          <div class="kpi-card kpi-card-error h-100">
+            <div class="d-flex align-items-center gap-2 mb-2" style="color:var(--agro-error);">
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">warning</span>
+              <span class="fw-700 fs-label text-uppercase tracking-widest">Alertas de Estoque Baixo</span>
+            </div>
+            <p class="fw-800 mb-2" style="font-family:'Manrope',sans-serif;font-size:2.5rem;color:var(--agro-on-error-container);line-height:1;">14</p>
+            <p class="mb-0" style="font-size:0.8rem;color:rgba(147,0,10,0.7);">Itens que requerem reposição imediata.</p>
+          </div>
+        </div>
+
+        <!-- Tertiary KPI -->
+        <div class="col-12 col-md-3">
+          <div class="kpi-card kpi-card-tertiary h-100">
+            <div class="d-flex align-items-center gap-2 mb-2 text-tertiary-agro">
+              <span class="material-symbols-outlined">local_shipping</span>
+              <span class="fw-700 fs-label text-uppercase tracking-widest">Próximas Entregas</span>
+            </div>
+            <p class="fw-800 mb-3" style="font-family:'Manrope',sans-serif;font-size:2.5rem;color:var(--agro-on-tertiary-fixed);line-height:1;">08</p>
+            <div class="d-flex" style="margin-left:-0.25rem;">
+              <span class="rounded-circle border bg-surface-lowest d-flex align-items-center justify-content-center fw-700" style="width:1.75rem;height:1.75rem;font-size:0.6rem;border-color:var(--agro-tertiary-fixed)!important;">+6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main workspace: 2/3 + 1/3 -->
+      <div class="row g-4">
+
+        <!-- Left column -->
+        <div class="col-12 col-lg-8">
+
+          <!-- Category cards -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-700 mb-0" style="font-size:1.125rem;">Distribuição de Estoque</h3>
+            <a href="estoque.html" class="text-primary-agro fw-700" style="font-size:0.875rem;text-decoration:none;">Ver Todas</a>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <!-- Fertilizantes -->
+            <div class="col-12 col-sm-4">
+              <a href="estoque.html" class="category-card fertilizantes">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="rounded p-2" style="background:rgba(23,51,14,0.08);color:var(--agro-primary);">
+                    <span class="material-symbols-outlined" style="font-size:1.25rem;">grass</span>
+                  </div>
+                  <span class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.5rem;">42%</span>
+                </div>
+                <p class="fw-700 mb-1" style="font-size:0.875rem;">Fertilizantes</p>
+                <p class="text-muted-agro mb-2" style="font-size:0.75rem;">2.400 Unidades</p>
+                <div class="progress-agro"><div class="bar bar-primary" style="width:42%"></div></div>
+              </a>
+            </div>
+            <!-- Sementes -->
+            <div class="col-12 col-sm-4">
+              <a href="estoque.html" class="category-card sementes">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="rounded p-2" style="background:rgba(121,86,75,0.08);color:var(--agro-secondary);">
+                    <span class="material-symbols-outlined" style="font-size:1.25rem;">eco</span>
+                  </div>
+                  <span class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.5rem;">28%</span>
+                </div>
+                <p class="fw-700 mb-1" style="font-size:0.875rem;">Sementes</p>
+                <p class="text-muted-agro mb-2" style="font-size:0.75rem;">1.150 Unidades</p>
+                <div class="progress-agro"><div class="bar bar-secondary" style="width:28%"></div></div>
+              </a>
+            </div>
+            <!-- Defensivos -->
+            <div class="col-12 col-sm-4">
+              <a href="estoque.html" class="category-card defensivos">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="rounded p-2" style="background:rgba(53,43,27,0.08);color:var(--agro-tertiary);">
+                    <span class="material-symbols-outlined" style="font-size:1.25rem;">pest_control</span>
+                  </div>
+                  <span class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.5rem;">30%</span>
+                </div>
+                <p class="fw-700 mb-1" style="font-size:0.875rem;">Defensivos</p>
+                <p class="text-muted-agro mb-2" style="font-size:0.75rem;">890 Unidades</p>
+                <div class="progress-agro"><div class="bar bar-tertiary" style="width:30%"></div></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Monitoring Table -->
+          <div class="rounded-xl overflow-hidden" style="background:var(--agro-surface-low);">
+            <div class="d-flex justify-content-between align-items-center px-4 py-3" style="background:rgba(242,224,200,0.3);">
+              <h3 class="fw-700 mb-0" style="font-size:1rem;">Monitoramento de Lotes Ativos</h3>
+              <div class="d-flex align-items-center gap-2">
+                <span class="rounded-circle" style="width:0.5rem;height:0.5rem;background:var(--agro-primary);display:inline-block;"></span>
+                <span class="fs-label fw-700 text-uppercase tracking-widest text-muted-agro">Sistema Online</span>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table-agro">
+                <thead>
+                  <tr>
+                    <th>Nome do Item</th>
+                    <th>Categoria</th>
+                    <th>Nível de Estoque</th>
+                    <th>Status</th>
+                    <th class="text-end">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p class="fw-700 mb-0" style="font-size:0.875rem;">NPK 20-20-20 Premium</p>
+                      <p class="mb-0 text-muted-agro" style="font-size:0.6875rem;font-family:monospace;">LOTE #F-2024-001</p>
+                    </td>
+                    <td><span class="badge-status badge-em-estoque">Fertilizantes</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="fw-700" style="font-size:0.875rem;min-width:4rem;">1.250 kg</span>
+                        <div class="progress-agro flex-grow-1" style="min-width:60px;"><div class="bar bar-primary" style="width:85%"></div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge-status badge-em-estoque">Em Estoque</span></td>
+                    <td class="text-end">
+                      <button class="btn-icon" aria-label="Mais ações">
+                        <span class="material-symbols-outlined" style="font-size:1.1rem;">more_vert</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="fw-700 mb-0" style="font-size:0.875rem;">Milho Híbrido Z-45</p>
+                      <p class="mb-0 text-muted-agro" style="font-size:0.6875rem;font-family:monospace;">LOTE #S-2024-112</p>
+                    </td>
+                    <td><span class="badge-status badge-estoque-baixo">Sementes</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="fw-700 text-error-agro" style="font-size:0.875rem;min-width:4rem;">140 Unid.</span>
+                        <div class="progress-agro flex-grow-1" style="min-width:60px;"><div class="bar bar-error" style="width:15%"></div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge-status badge-estoque-baixo">Estoque Baixo</span></td>
+                    <td class="text-end">
+                      <button class="btn-icon" aria-label="Mais ações">
+                        <span class="material-symbols-outlined" style="font-size:1.1rem;">more_vert</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="fw-700 mb-0" style="font-size:0.875rem;">Glifosato 480 SL</p>
+                      <p class="mb-0 text-muted-agro" style="font-size:0.6875rem;font-family:monospace;">LOTE #D-2024-88</p>
+                    </td>
+                    <td><span class="badge-status badge-em-transito">Defensivos</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="fw-700" style="font-size:0.875rem;min-width:4rem;">450 L</span>
+                        <div class="progress-agro flex-grow-1" style="min-width:60px;"><div class="bar bar-tertiary" style="width:45%"></div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge-status badge-em-transito">Em Trânsito</span></td>
+                    <td class="text-end">
+                      <button class="btn-icon" aria-label="Mais ações">
+                        <span class="material-symbols-outlined" style="font-size:1.1rem;">more_vert</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div><!-- /col-lg-8 -->
+
+        <!-- Right column -->
+        <div class="col-12 col-lg-4 d-flex flex-column gap-4">
+
+          <!-- Activity Feed Card -->
+          <div class="rounded-xl p-4" style="background:var(--agro-surface-lowest);border-top:4px solid var(--agro-primary);">
+            <h3 class="fw-700 mb-4 d-flex align-items-center gap-2" style="font-size:1rem;">
+              <span class="material-symbols-outlined text-primary-agro">notifications_active</span>
+              Atividade Recente
+            </h3>
+            <div class="d-flex flex-column gap-4">
+              <div class="activity-item">
+                <div class="activity-dot bg-primary-agro">
+                  <span class="material-symbols-outlined text-white" style="font-size:0.875rem;font-variation-settings:'FILL' 1;">check_circle</span>
+                </div>
+                <div>
+                  <p class="fw-700 mb-1" style="font-size:0.875rem;">Lote #F-2024-001 Recebido</p>
+                  <p class="text-muted-agro mb-1" style="font-size:0.75rem;">Armazém A • 2 horas atrás</p>
+                  <div class="rounded p-2 bg-surface-container" style="font-size:0.6875rem;color:var(--agro-on-surface-variant);">
+                    500 unidades de Potássio verificadas e armazenadas.
+                  </div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--agro-error);">
+                  <span class="material-symbols-outlined text-white" style="font-size:0.875rem;">priority_high</span>
+                </div>
+                <div>
+                  <p class="fw-700 mb-1" style="font-size:0.875rem;">Alerta de Estoque Baixo</p>
+                  <p class="text-muted-agro mb-1" style="font-size:0.75rem;">Alerta do Sistema • 5 horas atrás</p>
+                  <p class="mb-0 text-error-agro fw-600" style="font-size:0.75rem;">Soja caiu abaixo de 15%.</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--agro-tertiary);">
+                  <span class="material-symbols-outlined text-white" style="font-size:0.875rem;">local_shipping</span>
+                </div>
+                <div>
+                  <p class="fw-700 mb-1" style="font-size:0.875rem;">Nova OC Criada</p>
+                  <p class="text-muted-agro mb-1" style="font-size:0.75rem;">Suprimentos • 1 dia atrás</p>
+                  <p class="mb-0 fw-600" style="font-size:0.75rem;">Pedido #8834 com Global AgriSupplies.</p>
+                </div>
+              </div>
+            </div>
+            <a href="relatorios.html" class="btn btn-agro-secondary w-100 mt-4 py-2" style="font-size:0.8125rem;">Ver Histórico Completo</a>
+          </div>
+
+          <!-- Weather card -->
+          <div class="rounded-xl overflow-hidden position-relative" style="min-height:180px;">
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background:linear-gradient(135deg,#2d4a22 0%,#17330e 100%);"></div>
+            <div class="position-relative p-4" style="color:white;z-index:1;">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <span class="material-symbols-outlined" style="font-size:2rem;">cloud_queue</span>
+                <span class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.75rem;">24°C</span>
+              </div>
+              <p class="fw-700 mb-1" style="font-size:1rem;">Fazenda Central Valley</p>
+              <p class="mb-0" style="font-size:0.8125rem;opacity:0.8;">Chuva leve esperada em 2 horas.</p>
+            </div>
+          </div>
+
+        </div><!-- /col-lg-4 -->
+      </div><!-- /row -->
+
+    </main>
+
+    <!-- ── FOOTER (sticky — pushed down by flex-grow-1 on main) ── -->
+    <footer class="app-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span>© 2024 Ecossistema Digital AgroStock</span>
+      <div class="d-flex gap-4">
+        <a href="#">Protocolo de Privacidade</a>
+        <a href="#">Logs de Auditoria</a>
+        <a href="#">Suporte</a>
+      </div>
+    </footer>
+
+  </div><!-- /main-wrapper -->
+
+  <!-- FAB -->
+  <a href="cadastro.html" class="fab" aria-label="Adicionar novo insumo">
+    <span class="material-symbols-outlined" style="font-size:1.5rem;">add</span>
+  </a>
+
+  <!-- Bootstrap JS (npm local) -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
