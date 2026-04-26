@@ -8,7 +8,17 @@ O diferencial: Fornecer uma visão clara e organizada dos insumos disponíveis, 
 
 ---
 
-## 2. Atores do Sistema
+## 2. Público-Alvo
+
+**Perfil primário:** Pequenos e médios produtores rurais e gestores de propriedades agrícolas que precisam controlar o estoque de insumos sem depender de sistemas ERP complexos ou caros.
+
+**Nível técnico esperado:** Usuário com acesso a smartphone/computador e familiaridade básica com navegador web. Não requer conhecimento técnico.
+
+**Necessidade central:** Saber rapidamente *o que tem em estoque*, *quando comprar* e *de qual fornecedor*, tudo em uma interface simples e responsiva.
+
+---
+
+## 3. Atores do Sistema
 
 **Visitante:** Usuário que acessa a aplicação e pode visualizar os insumos cadastrados.
 
@@ -83,7 +93,19 @@ Como um Usuário, quero informar o CEP do fornecedor e ter o endereço preenchid
 
 ---
 
-## 4. Requisitos Funcionais
+### 🌤️ Épico 5: Dashboard e Clima
+
+**US06 - Visualizar Dados Climáticos:**
+Como um Usuário, quero ver a temperatura e condição climática atual no painel de controle, para planejar operações no campo.
+
+**Critérios de Aceitação:**
+- O dashboard deve exibir temperatura atual e condição do tempo.
+- Dados obtidos via API Open-Meteo (gratuita, sem chave de API).
+- Falha na API não deve impedir o carregamento do dashboard.
+
+---
+
+## 5. Requisitos Funcionais
 
 **Validação de Dados:**
 - Campos obrigatórios devem ser validados.
@@ -100,7 +122,7 @@ Como um Usuário, quero informar o CEP do fornecedor e ter o endereço preenchid
 
 ---
 
-## 5. Requisitos Não-Funcionais
+## 6. Requisitos Não-Funcionais
 
 **Performance:**
 - Aplicação deve carregar rapidamente (menos de 3 segundos).
@@ -114,7 +136,7 @@ Como um Usuário, quero informar o CEP do fornecedor e ter o endereço preenchid
 
 ---
 
-## 6. Design e Layout
+## 7. Design e Layout
 
 **Página Inicial:**
 - Lista de insumos cadastrados.
@@ -130,7 +152,7 @@ Como um Usuário, quero informar o CEP do fornecedor e ter o endereço preenchid
 
 ---
 
-## 7. MVP - Escopo Mínimo
+## 8. MVP - Escopo Mínimo
 
 ✅ Cadastro de insumos  
 ✅ Listagem de insumos  
@@ -142,7 +164,7 @@ Como um Usuário, quero informar o CEP do fornecedor e ter o endereço preenchid
 
 ---
 
-## 8. Critérios de Aceitação Gerais
+## 9. Critérios de Aceitação Gerais
 
 - Formulários devem ter validação e feedback.
 - Layout deve ser responsivo.

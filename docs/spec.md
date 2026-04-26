@@ -1,10 +1,73 @@
-# 🛠️ Especificação Técnica (Tech Spec) - AgroStock
+# 🛠️ Especificação Técnica (SDD / Tech Spec) - AgroStock
 
-Este documento detalha a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) necessários para o funcionamento do sistema de controle de insumos agrícolas **AgroStock**.
+Este documento detalha a arquitetura técnica, o Design System, o modelo de dados e os contratos de API necessários para o funcionamento do sistema de controle de insumos agrícolas **AgroStock**.
 
 ---
 
-## 1. Modelo de Dados (Diagrama ER)
+## 1. Framework CSS
+
+**Bootstrap 5.3** — instalado via npm local (sem CDN).
+
+```
+node_modules/bootstrap/dist/css/bootstrap.min.css
+node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
+```
+
+> Tailwind CSS não é utilizado nesta disciplina.
+
+---
+
+## 2. Design Tokens
+
+### 2.1 Paleta de Cores (Material Design 3 — tema agrícola)
+
+| Token CSS | Valor HEX | Uso |
+|---|---|---|
+| `--agro-primary` | `#17330e` | Cor principal — botões, links ativos, destaques |
+| `--agro-primary-container` | `#2d4a22` | Fundo de sidebar ativa, hover |
+| `--agro-primary-fixed` | `#c9edb6` | Badges, destaques claros |
+| `--agro-secondary` | `#79564b` | Terracota — cor de apoio |
+| `--agro-secondary-container` | `#fed0c1` | Fundo de alertas secundários |
+| `--agro-tertiary` | `#352b1b` | Marrom escuro — textos de apoio |
+| `--agro-surface` | `#fcf9f7` | Fundo geral da página |
+| `--agro-surface-low` | `#f6f3f1` | Fundo da sidebar |
+| `--agro-surface-container` | `#f0edeb` | Fundo de cards e painéis |
+| `--agro-on-surface` | `#1b1c1b` | Texto principal |
+| `--agro-on-surface-variant` | `#43483f` | Texto secundário / labels |
+| `--agro-outline` | `#73796e` | Bordas e divisores |
+| `--agro-error` | `#ba1a1a` | Estados de erro e alertas |
+| `--agro-error-container` | `#ffdad6` | Fundo de mensagens de erro |
+
+**Justificativa da paleta:** Tons de verde-floresta e marrom evocam o universo agrícola e oferecem contraste AAA em fundos neutros quentes.
+
+### 2.2 Tipografia
+
+| Papel | Fonte | Uso |
+|---|---|---|
+| **Body / Interface** | `Inter` (Google Fonts) | Texto corrido, labels, tabelas |
+| **Display / Headers** | `Manrope` (Google Fonts) | Títulos, métricas numéricas, sidebar |
+
+Escala tipográfica usa `rem` e `clamp()` para responsividade fluida.
+
+---
+
+## 3. Componentes Bootstrap — Mapeamento para Substituição no Protótipo
+
+Os componentes abaixo foram identificados no protótipo (Figma/Stitch) como candidatos diretos à substituição pelas classes Bootstrap 5.3:
+
+| # | Componente do Protótipo | Componente Bootstrap | Arquivo de uso |
+|---|---|---|---|
+| 1 | Barra de navegação lateral (mobile) | **Offcanvas** (`offcanvas-start`) | Todas as páginas |
+| 2 | Cards de KPI no dashboard | **Card** (`card`, `card-body`) | `index.html` |
+| 3 | Tabela de insumos em estoque | **Table** (`table table-hover table-striped`) | `estoque.html` |
+| 4 | Janela de confirmação de exclusão | **Modal** (`modal`, `modal-dialog`) | `estoque.html`, `detalhes.html` |
+| 5 | Notificações de sucesso/erro | **Toast** (`toast`, `toast-container`) | Todas as páginas |
+
+> Os itens 1, 2 e 3 são os **3 mínimos obrigatórios** para a Entrega 1.
+
+---
+
+## 4. Modelo de Dados (Diagrama ER)
 
 Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do nosso "banco de dados" (`db.json`) e como as informações se conectam.
 
@@ -20,9 +83,19 @@ erDiagram
         string cidade
         string estado
     }
+
+    INSUMO {
+        string id PK
+        string nome
+        string categoria
+        number quantidade
+        string unidade
+        string fornecedorId FK
+        string dataCompra
+    }
 ```
 
-## 2. Dicionário de Dados
+## 5. Dicionário de Dados
 🌾 Insumos
 Responsável por armazenar os produtos agrícolas cadastrados no sistema.
 
@@ -44,7 +117,7 @@ endereco : Endereço obtido via API
 cidade   : Cidade do fornecedor
 estado   : Estado do fornecedor
 
-## 3. Rotas da API (JSON Server)
+## 6. Rotas da API (JSON Server)
 A aplicação consome uma API fake utilizando JSON Server.
 📦 Insumos
 
@@ -61,8 +134,10 @@ POST   /fornecedores      → Cadastra fornecedor
 GET    /fornecedores/{id} → Retorna fornecedor específico
 
 Nota: PUT e DELETE para fornecedores podem ser implementados posteriormente, se necessário.
-## 4. Estrutura do Banco de Dados (exemplo de db.json)
-JSON{
+## 7. Estrutura do Banco de Dados (exemplo de db.json)
+
+```json
+{
   "fornecedores": [
     {
       "id": "1",
@@ -94,25 +169,47 @@ JSON{
     }
   ]
 }
-## 5. Integração com API Pública (ViaCEP)
-A aplicação utilizará a API ViaCEP para preenchimento automático de endereço.
-Endpoint exemplo
-https://viacep.com.br/ws/{cep}/json/
-Fluxo
+```
 
-Usuário digita o CEP
-Sistema faz requisição à API
-Campos de endereço são preenchidos automaticamente
+## 8. Integração com APIs Públicas
 
-## 6. Tecnologias e Dependências
+### 8.1 ViaCEP — Preenchimento automático de endereço
 
-Frontend     : HTML5, CSS3, JavaScript
-Framework CSS : Bootstrap
-Biblioteca JS : jQuery
-API Fake      : JSON Server
-Persistência  : localStorage (opcional) + JSON Server
+```
+GET https://viacep.com.br/ws/{cep}/json/
+```
 
-## 7. Fluxo Principal – Cadastro de Insumo
+**Fluxo:**
+1. Usuário digita o CEP no formulário de fornecedor
+2. Sistema faz requisição à API ViaCEP
+3. Campos `endereco`, `cidade` e `estado` são preenchidos automaticamente
+4. CEP inválido → exibe mensagem de erro inline
+
+### 8.2 Open-Meteo — Dados climáticos no Dashboard
+
+```
+GET https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true
+```
+
+**Fluxo:**
+1. Dashboard requisita clima atual baseado na localização configurada
+2. Exibe temperatura e condição no card meteorológico
+3. Falha de rede → card exibe estado de erro sem quebrar o layout
+
+## 9. Tecnologias e Dependências
+
+| Camada | Tecnologia | Versão |
+|---|---|---|
+| Frontend | HTML5, CSS3, JavaScript (ES6+) | — |
+| Framework CSS | **Bootstrap** (npm local) | 5.3 |
+| Pré-processador CSS | Sass (SCSS) | ^1.99.0 |
+| Biblioteca JS | jQuery | ^3.7.1 |
+| Máscara de campo | jQuery Mask Plugin | ^1.14.16 |
+| API Fake | JSON Server | ^1.0.0-beta.3 |
+| Linter | ESLint | ^9.39.4 |
+| Formatador | Prettier | ^3.8.2 |
+
+## 10. Fluxo Principal – Cadastro de Insumo
 
 Usuário preenche formulário
 Sistema valida os dados
@@ -121,25 +218,18 @@ JSON Server retorna o insumo criado
 Interface é atualizada com o novo item
 Mensagem de sucesso é exibida
 
-## 8. Fluxo – Consulta de CEP
+## 11. Tratamento de Erros (principais casos)
 
-Usuário digita CEP
-Sistema faz requisição à API ViaCEP
-Se válido → Preenche endereço automaticamente
-Se inválido → Exibe mensagem de erro
+- Campos obrigatórios não preenchidos → highlight vermelho + mensagem inline
+- Quantidade inválida (≤ 0) → bloqueia submit
+- CEP inválido ou não encontrado → exibe toast de erro
+- Erros de requisição (API fora do ar) → exibe mensagem amigável, sem crash
+- Falha ao salvar dados → reverte estado e exibe feedback
 
-## 9. Tratamento de Erros (principais casos)
+## 12. Regras de Negócio
 
-Campos obrigatórios não preenchidos
-Quantidade inválida (≤ 0)
-CEP inválido ou não encontrado
-Erros de requisição (API fora do ar)
-Falha ao salvar dados
-
-## 10. Regras de Negócio
-
-Quantidade deve ser sempre maior que zero
-Nome do insumo é obrigatório
-CEP deve ser válido (8 dígitos)
-Um insumo deve estar vinculado a um fornecedor existente
-Exclusão de insumo remove o item da listagem imediatamente
+- Quantidade deve ser sempre maior que zero
+- Nome do insumo é obrigatório
+- CEP deve ser válido (8 dígitos)
+- Um insumo deve estar vinculado a um fornecedor existente
+- Exclusão de insumo remove o item da listagem imediatamente (sem refresh manual)
