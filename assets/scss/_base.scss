@@ -1,0 +1,59 @@
+@use 'variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+  --agro-primary:               #{variables.$color-primary};
+  --agro-primary-container:     #{variables.$color-primary-container};
+  --agro-primary-fixed:         #{variables.$color-primary-fixed};
+  --agro-primary-fixed-dim:     #{variables.$color-primary-fixed-dim};
+  --agro-on-primary:            #{variables.$color-on-primary};
+  --agro-on-primary-container:  #{variables.$color-on-primary-container};
+
+  --agro-secondary:             #{variables.$color-secondary};
+  --agro-secondary-container:   #{variables.$color-secondary-container};
+  --agro-on-secondary-container:#{variables.$color-on-secondary-container};
+
+  --agro-tertiary:              #{variables.$color-tertiary};
+  --agro-tertiary-fixed:        #{variables.$color-tertiary-fixed};
+  --agro-on-tertiary-fixed:     #{variables.$color-on-tertiary-fixed};
+  --agro-tertiary-container:    #{variables.$color-tertiary-container};
+  --agro-on-tertiary-container: #{variables.$color-on-tertiary-container};
+
+  --agro-surface:               #{variables.$color-surface};
+  --agro-surface-low:           #{variables.$color-surface-low};
+  --agro-surface-container:     #{variables.$color-surface-container};
+  --agro-surface-high:          #{variables.$color-surface-high};
+  --agro-surface-highest:       #{variables.$color-surface-highest};
+  --agro-surface-lowest:        #{variables.$color-surface-lowest};
+
+  --agro-on-surface:            #{variables.$color-on-surface};
+  --agro-on-surface-variant:    #{variables.$color-on-surface-variant};
+  --agro-outline:               #{variables.$color-outline};
+  --agro-outline-variant:       #{variables.$color-outline-variant};
+
+  --agro-error:                 #{variables.$color-error};
+  --agro-error-container:       #{variables.$color-error-container};
+  --agro-on-error:              #{variables.$color-on-error};
+  --agro-on-error-container:    #{variables.$color-on-error-container};
+
+  --sidebar-width: #{variables.$sidebar-width};
+  --header-height: #{variables.$header-height};
+}
+
+body {
+  font-family: variables.$font-body;
+  background-color: var(--agro-surface);
+  color: var(--agro-on-surface);
+}
+
+h1, h2, h3, h4, .font-headline {
+  font-family: variables.$font-heading;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  vertical-align: middle;
+}

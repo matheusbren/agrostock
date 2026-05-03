@@ -1,0 +1,46 @@
+// ==== CORES ====
+$color-primary:             #17330e;
+$color-primary-container:   #2d4a22;
+$color-primary-fixed:       #c9edb6;
+$color-primary-fixed-dim:   #aed09c;
+$color-on-primary:          #ffffff;
+$color-on-primary-container:#97b986;
+
+$color-secondary:           #79564b;
+$color-secondary-container: #fed0c1;
+$color-on-secondary-container: #79574c;
+
+$color-tertiary:            #352b1b;
+$color-tertiary-fixed:      #f2e0c8;
+$color-on-tertiary-fixed:   #231a0c;
+$color-tertiary-container:  #4c4130;
+$color-on-tertiary-container: #bdad97;
+
+$color-surface:             #fcf9f7;
+$color-surface-low:         #f6f3f1;
+$color-surface-container:   #f0edeb;
+$color-surface-high:        #eae8e6;
+$color-surface-highest:     #e5e2e0;
+$color-surface-lowest:      #ffffff;
+
+$color-on-surface:          #1b1c1b;
+$color-on-surface-variant:  #43483f;
+$color-outline:             #73796e;
+$color-outline-variant:     #c3c8bc;
+
+$color-error:               #ba1a1a;
+$color-error-container:     #ffdad6;
+$color-on-error:            #ffffff;
+$color-on-error-container:  #93000a;
+
+// ==== TIPOGRAFIA ====
+$font-body:      'Inter', sans-serif;
+$font-heading:   'Manrope', sans-serif;
+$font-size-base: 16px;
+
+// ==== ESPAÇAMENTO ====
+$spacing-base: 1rem;
+
+// ==== LAYOUT ====
+$sidebar-width: 256px;
+$header-height: 64px;

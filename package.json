@@ -4,6 +4,8 @@
   "description": "Aplicação web responsiva para controle de insumos agrícolas",
   "main": "index.js",
   "scripts": {
+    "sass:build": "sass assets/scss/main.scss assets/css/style.css",
+    "sass:watch": "sass --watch assets/scss/main.scss assets/css/style.css",
     "json:server": "json-server --watch db.json",
     "json:server:routes": "json-server --watch db.json --routes routes.json"
   },

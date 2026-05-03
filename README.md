@@ -8,7 +8,7 @@ Sistema web responsivo para controle de insumos agrícolas. Permite cadastrar, v
 
 ## Design
 
-Prototipação: https://www.figma.com/design/hK4haiiVzRuvn8zxy3sQ3N/AgroStock?node-id=0-1&t=cqMSHli0yGXrTOrf-1
+Prototipação: https://www.figma.com/proto/E3N80a6McIR1wdHOAizz1i/AgroStock?node-id=1-1584&p=f&t=nNHJb7IyxmF0cUU9-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A1584&show-proto-sidebar=1
 
 ---
 

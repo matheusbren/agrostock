@@ -1,0 +1,13 @@
+// Centraliza item com flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Media query para telas menores que lg (< 992px)
+@mixin respond-below-lg {
+  @media (max-width: 991.98px) {
+    @content;
+  }
+}
