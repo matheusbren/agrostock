@@ -14,7 +14,7 @@ Prototipação: https://www.figma.com/proto/E3N80a6McIR1wdHOAizz1i/AgroStock?nod
 
 ## Site em Produção
 
-Em andamento — aguardando configuração do GitHub Pages.
+https://matheusbren.github.io/agrostock/
 
 ---
 
@@ -84,9 +84,9 @@ npm install
 - [x] ID 04 — Utiliza componentes prontos de um Framework CSS — 10 componentes Bootstrap: Offcanvas, Toast, Modal, Badge, Table, Progress, Form, Form Switch, Button, Pagination
 - [x] ID 05 — Cria layout fluido usando unidades relativas — `rem`, `%`, `vh`, `vw` em todo o `custom.css`
 - [x] ID 06 — Aplica um Design System consistente — CSS variables (`:root`) com paleta Material Design 3 e tokens semânticos (`--agro-primary`, `--agro-error`, etc.)
-- [ ] ID 07 — Utiliza Sass (SCSS) — Sass instalado (`devDependencies`); pendente migração do `custom.css` para SCSS
-- [x] ID 08 — Aplica tipografia responsiva — escala tipográfica com `rem` e `clamp`; fonte `Nunito` via Google Fonts
-- [ ] ID 09 — Aplica técnicas de responsividade de imagens — pendente
+- [x] ID 07 — Utiliza Sass (SCSS) — `_variables.scss`, `_mixins.scss`, `_base.scss`, `_layout.scss` com variáveis, mixins e partials compilados via `npm run sass:build`
+- [x] ID 08 — Aplica tipografia responsiva — `clamp()` em h1–h4 (`_base.scss`) + escala em `rem`; fontes `Manrope` e `Inter` via Google Fonts
+- [x] ID 09 — Aplica técnicas de responsividade de imagens — classes `.img-cover-container`, `.img-responsive`, `.img-product-thumb` com `object-fit` e unidades relativas (`main.scss`)
 - [ ] ID 10 — Otimiza imagens — pendente
 
 ---
@@ -106,7 +106,7 @@ npm install
 - [x] ID 16 — Utiliza boas práticas de versionamento no Git/GitHub — commits semânticos (`feat:`, `fix:`, `melhora`), repositório em `github.com/matheusbren/agrostock`
 - [x] ID 17 — Mantém README.md padronizado — este documento
 - [x] ID 18 — Organiza arquivos do projeto de forma modular — estrutura `assets/css/`, páginas HTML separadas por funcionalidade
-- [x] ID 19 — Configura linters e formatadores — ESLint + Prettier em `devDependencies`
+- [x] ID 19 — Configura linters e formatadores — ESLint (`eslint.config.js`) + Prettier (`.prettierrc`) configurados
 
 ---
 
