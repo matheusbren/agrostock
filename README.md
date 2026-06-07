@@ -82,7 +82,7 @@ npm install
 - [x] ID 02 — Implementa layout responsivo com Framework CSS — Bootstrap 5.3 com grid de 12 colunas e utilitários `d-none d-lg-flex`, `d-lg-none`
 - [x] ID 03 — Implementa layout responsivo com CSS puro — `@media (max-width: 991.98px)` definida no SCSS (`_layout.scss`, via o mixin `respond-below-lg`) para a sidebar e o `margin-left` do wrapper, compilada em `assets/css/style.css`
 - [x] ID 04 — Utiliza componentes prontos de um Framework CSS:
-  - **Recursos/componentes do Bootstrap:** sistema de **Grid** (12 colunas), classe base **`.card`** (KPI cards do `index.html`), classe base **`.table`** (tabela de estoque), classe base **`.btn`** (botões) e os componentes **JavaScript** **Offcanvas**, **Modal** e **Toast** (acionados por `data-bs-*` + `bootstrap.bundle.min.js`).
+  - **Recursos/componentes do Bootstrap:** sistema de **Grid** (12 colunas), classe base **`.card`** (KPI cards do `index.html`), classe base **`.table`** (tabela de estoque), classe base **`.btn`** (botões), **Form Switch** (`form-check form-switch`) e os componentes **JavaScript** **Offcanvas**, **Modal** e **Toast** (acionados por `data-bs-*` + `bootstrap.bundle.min.js`).
   - **Estilização própria sobre a estrutura (não são componentes do Bootstrap):** badge (`.badge-status`), progress (`.progress-agro`), paginação (`.pagination-agro`) e campos de formulário (`.form-control-agro` / `.form-select-agro`).
 - [x] ID 05 — Cria layout fluido usando unidades relativas — `rem`, `%`, `vh`, `vw` usadas no SCSS (`_base.scss`, `_layout.scss`, `main.scss`) e compiladas em `assets/css/style.css`
 - [x] ID 06 — Aplica um Design System consistente — CSS variables (`:root`) com paleta Material Design 3 e tokens semânticos (`--agro-primary`, `--agro-error`, etc.)
@@ -129,7 +129,7 @@ npm install
 
 ## Relatório de Auditoria
 
-Disponível em [`relatorio-auditoria.html`](relatorio-auditoria.html) — contém análise dos 10 componentes Bootstrap, análise do sistema Grid/Flexbox e explicação técnica do rodapé fixo.
+Disponível em [`relatorio-auditoria.html`](relatorio-auditoria.html) — contém análise dos componentes de interface (Bootstrap nativos + customizados), análise do sistema Grid/Flexbox e explicação técnica do rodapé fixo.
 
 ---
 
