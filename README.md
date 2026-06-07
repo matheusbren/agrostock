@@ -88,8 +88,8 @@ npm install
 - [x] ID 06 — Aplica um Design System consistente — CSS variables (`:root`) com paleta Material Design 3 e tokens semânticos (`--agro-primary`, `--agro-error`, etc.)
 - [x] ID 07 — Utiliza Sass (SCSS) — `_variables.scss`, `_mixins.scss`, `_base.scss`, `_layout.scss` com variáveis, mixins e partials compilados via `npm run sass:build`
 - [x] ID 08 — Aplica tipografia responsiva — `clamp()` em h1–h4 (`_base.scss`) + escala em `rem`; fontes `Manrope` e `Inter` via Google Fonts
-- [x] ID 09 — Aplica técnicas de responsividade de imagens — classes `.img-cover-container`, `.img-responsive`, `.img-product-thumb` com `object-fit` e unidades relativas (`main.scss`)
-- [ ] ID 10 — Otimiza imagens — pendente
+- [x] ID 09 — Aplica técnicas de responsividade de imagens — `<picture>` com `srcset`/`sizes` em `detalhes.html`, servido dentro de `.img-cover-container` + `.img-product-thumb` (com `object-fit: cover` e `aspect-ratio`, definidos em `main.scss`); avatares de interface também usam dimensionamento por parâmetro de URL
+- [x] ID 10 — Otimiza imagens — formato **WebP** com fallback JPG via `<picture>` + `srcset` (400w/800w) e `loading="lazy"`/`decoding="async"` em `detalhes.html` (imagens geradas com `sharp`); carregamento adaptativo dos avatares por parâmetro de URL (`size=`)
 
 ---
 
