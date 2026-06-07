@@ -6,11 +6,11 @@ Este documento detalha a arquitetura técnica, o Design System, o modelo de dado
 
 ## 1. Framework CSS
 
-**Bootstrap 5.3** — instalado via npm local (sem CDN).
+**Bootstrap 5.3** — instalado via npm e servido localmente a partir de `assets/vendor/bootstrap/` (sem CDN).
 
 ```
-node_modules/bootstrap/dist/css/bootstrap.min.css
-node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
+assets/vendor/bootstrap/bootstrap.min.css
+assets/vendor/bootstrap/bootstrap.bundle.min.js
 ```
 
 > Tailwind CSS não é utilizado nesta disciplina.

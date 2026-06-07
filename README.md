@@ -30,10 +30,10 @@ https://matheusbren.github.io/agrostock/
 | `prettier` | ^3.8.2 | Formatador de código |
 | `sass` | ^1.99.0 | Pré-processador CSS |
 
-**Bootstrap referenciado via npm local** — sem CDN:
+**Bootstrap instalado via npm e servido localmente** (copiado para `assets/vendor/`) — sem CDN:
 ```
-node_modules/bootstrap/dist/css/bootstrap.min.css
-node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
+assets/vendor/bootstrap/bootstrap.min.css
+assets/vendor/bootstrap/bootstrap.bundle.min.js
 ```
 
 **APIs públicas utilizadas:**
@@ -70,7 +70,7 @@ npm install
 #    ou abrir diretamente no navegador
 ```
 
-> O Bootstrap é servido a partir de `node_modules/` — não requer conexão com CDN.
+> O Bootstrap é servido a partir de `assets/vendor/bootstrap/` (versionado para o GitHub Pages) — não requer conexão com CDN.
 
 ---
 
