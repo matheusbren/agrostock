@@ -274,6 +274,12 @@ h4 {
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  display: block;
+  --bs-card-bg: transparent;
+  --bs-card-border-width: 0;
+  --bs-card-border-radius: 0.75rem;
+  --bs-card-spacer-x: 0;
+  --bs-card-spacer-y: 0;
 }
 
 .kpi-card-primary {
@@ -357,6 +363,13 @@ h4 {
   border-collapse: collapse;
   width: 100%;
   margin: 0;
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--agro-on-surface);
+}
+.table-agro > :not(caption) > * > * {
+  box-shadow: none;
+  background-color: transparent;
+  border-bottom-width: 0;
 }
 .table-agro thead tr {
   background-color: var(--agro-tertiary-fixed);

@@ -64,6 +64,13 @@
   padding: 2 * variables.$spacing-base;
   position: relative;
   overflow: hidden;
+  // Neutraliza injeções da classe base .card do Bootstrap, mantendo o tema.
+  display: block; // anula display:flex do .card (evita mudança de espaçamento)
+  --bs-card-bg: transparent; // fundo vem do modificador .kpi-card-*
+  --bs-card-border-width: 0;
+  --bs-card-border-radius: 0.75rem;
+  --bs-card-spacer-x: 0;
+  --bs-card-spacer-y: 0;
 }
 
 .kpi-card-primary  { background-color: var(--agro-surface-low); }
@@ -133,6 +140,17 @@
   border-collapse: collapse;
   width: 100%;
   margin: 0;
+  // Neutraliza injeções da classe base .table do Bootstrap, mantendo o tema.
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--agro-on-surface);
+
+  // Anula box-shadow/borda/padding que o .table aplica em cada célula;
+  // o fundo e os separadores continuam vindo das regras de tr abaixo.
+  > :not(caption) > * > * {
+    box-shadow: none;
+    background-color: transparent;
+    border-bottom-width: 0;
+  }
 
   thead {
     tr {
