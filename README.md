@@ -81,7 +81,9 @@ npm install
 - [x] ID 01 — Prototipa interfaces adaptáveis (mobile e desktop) — sidebar fixa no desktop, Offcanvas no mobile; breakpoints `col-md-*` / `col-lg-*`
 - [x] ID 02 — Implementa layout responsivo com Framework CSS — Bootstrap 5.3 com grid de 12 colunas e utilitários `d-none d-lg-flex`, `d-lg-none`
 - [x] ID 03 — Implementa layout responsivo com CSS puro — `assets/css/custom.css` com `@media (max-width: 991.98px)` para sidebar e margin-left do wrapper
-- [x] ID 04 — Utiliza componentes prontos de um Framework CSS — 10 componentes Bootstrap: Offcanvas, Toast, Modal, Badge, Table, Progress, Form, Form Switch, Button, Pagination
+- [x] ID 04 — Utiliza componentes prontos de um Framework CSS:
+  - **Recursos/componentes do Bootstrap:** sistema de **Grid** (12 colunas), classe base **`.card`** (KPI cards do `index.html`), classe base **`.table`** (tabela de estoque), classe base **`.btn`** (botões) e os componentes **JavaScript** **Offcanvas**, **Modal** e **Toast** (acionados por `data-bs-*` + `bootstrap.bundle.min.js`).
+  - **Estilização própria sobre a estrutura (não são componentes do Bootstrap):** badge (`.badge-status`), progress (`.progress-agro`), paginação (`.pagination-agro`) e campos de formulário (`.form-control-agro` / `.form-select-agro`).
 - [x] ID 05 — Cria layout fluido usando unidades relativas — `rem`, `%`, `vh`, `vw` em todo o `custom.css`
 - [x] ID 06 — Aplica um Design System consistente — CSS variables (`:root`) com paleta Material Design 3 e tokens semânticos (`--agro-primary`, `--agro-error`, etc.)
 - [x] ID 07 — Utiliza Sass (SCSS) — `_variables.scss`, `_mixins.scss`, `_base.scss`, `_layout.scss` com variáveis, mixins e partials compilados via `npm run sass:build`
