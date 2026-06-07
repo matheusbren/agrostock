@@ -115,6 +115,25 @@
         </div>
       </div>
 
+      <!-- Product image — WebP + <picture> + srcset (ID 10 / ID 09) -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="img-cover-container">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/img/produtos/produto-400.webp 400w,
+                              assets/img/produtos/produto-800.webp 800w"
+                      sizes="(max-width: 768px) 100vw, 400px">
+              <img src="assets/img/produtos/produto-400.jpg"
+                   srcset="assets/img/produtos/produto-800.jpg 800w"
+                   class="img-product-thumb"
+                   alt="Foto do insumo agrícola — Fertilizante Ureia"
+                   loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </div>
+      </div>
+
       <!-- Metric blocks — Bootstrap row/col grid -->
       <div class="row g-4 mb-5">
         <div class="col-6 col-md-3">
