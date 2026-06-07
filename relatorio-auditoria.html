@@ -505,14 +505,15 @@
       <h1 class="cover-title">
         Análise de<br>
         <em>Componentes</em><br>
-        Bootstrap 5.3
+        de Interface
       </h1>
 
       <div class="cover-rule"></div>
 
       <p class="cover-subtitle">
-        Documentação técnica dos componentes Bootstrap utilizados no sistema AgroStock,
-        com análise do sistema de Grid e Flexbox e explicação da implementação do rodapé fixo.
+        Documentação técnica dos componentes de interface do sistema AgroStock — parte
+        nativos do Bootstrap 5.3, parte estilizados do zero sobre a estrutura — com análise
+        do sistema de Grid e Flexbox e explicação da implementação do rodapé fixo.
       </p>
     </div>
 
@@ -523,7 +524,7 @@
       </div>
       <div class="cover-field">
         <label>Framework</label>
-        <span>Bootstrap 5.3.3 (npm local)</span>
+        <span>Bootstrap 5.3.8 (npm local)</span>
       </div>
       <div class="cover-field">
         <label>Páginas desenvolvidas</label>
@@ -531,7 +532,7 @@
       </div>
       <div class="cover-field">
         <label>Ano</label>
-        <span>2024</span>
+        <span>2026</span>
       </div>
     </div>
   </div>
@@ -544,7 +545,7 @@
   <div class="toc">
     <h2 class="toc-heading">Sumário</h2>
 
-    <p class="toc-group-label">Seção 1 — Componentes Bootstrap</p>
+    <p class="toc-group-label">Seção 1 — Componentes de Interface</p>
     <ul class="toc-list">
       <li><span class="toc-n">1.1</span><span class="toc-lbl">Offcanvas — Sidebar Mobile Responsivo</span></li>
       <li><span class="toc-n">1.2</span><span class="toc-lbl">Toast — Notificação de Preenchimento Automático</span></li>
@@ -573,9 +574,9 @@
     </ul>
 
     <div class="highlight-box mt3">
-      <strong>Nota sobre o Bootstrap via npm:</strong> Este projeto referencia o Bootstrap diretamente da pasta
-      <span class="ic">node_modules/</span> instalada localmente via <span class="ic">npm install bootstrap</span>,
-      sem uso de CDN externo. Os arquivos referenciados são
+      <strong>Nota sobre o Bootstrap:</strong> O Bootstrap é instalado via <span class="ic">npm install bootstrap</span>
+      e os arquivos de distribuição são versionados no repositório em <span class="ic">assets/vendor/bootstrap/</span>,
+      sem uso de CDN externo. As páginas referenciam
       <span class="ic">assets/vendor/bootstrap/bootstrap.min.css</span> e
       <span class="ic">assets/vendor/bootstrap/bootstrap.bundle.min.js</span>.
     </div>
@@ -596,8 +597,11 @@
     </div>
 
     <p class="section-intro">
-      A seguir são detalhados os 10 componentes Bootstrap 5.3 identificados no projeto AgroStock.
-      Para cada componente são apresentados: descrição funcional, páginas de uso e trecho de código real extraído do projeto.
+      A seguir são detalhados os 10 componentes de interface do projeto AgroStock. Parte são
+      componentes nativos do Bootstrap 5.3 (Offcanvas, Toast, Modal, Table, Form Switch e Button)
+      e parte é estilização própria construída do zero sobre a estrutura (Badge, Progress, campos
+      de formulário e Pagination), sinalizada com a etiqueta "Componente customizado".
+      Para cada um são apresentados: descrição funcional, páginas de uso e trecho de código real extraído do projeto.
     </p>
 
     <div class="comp-grid">
@@ -702,6 +706,8 @@
           <span class="comp-title">Badge</span>
         </div>
         <div class="comp-body">
+          <span class="comp-where-lbl">Classificação</span>
+          <span class="tag-file">Componente customizado — estilizado do zero sobre a estrutura, sem usar a classe-base do Bootstrap</span>
           <p>Rótulo compacto inline utilizado para indicar o estado atual de cada item de estoque. Quatro variações semânticas foram implementadas com cores distintas baseadas nas variáveis CSS do tema: <em>Em Estoque</em> (verde), <em>Estoque Baixo</em> (âmbar), <em>Em Trânsito</em> (azul) e <em>Esgotado</em> (vermelho).</p>
           <span class="comp-where-lbl">Presente em</span>
           <span class="tag-file">index.html</span>
@@ -779,6 +785,8 @@
           <span class="comp-title">Progress</span>
         </div>
         <div class="comp-body">
+          <span class="comp-where-lbl">Classificação</span>
+          <span class="tag-file">Componente customizado — estilizado do zero sobre a estrutura, sem usar a classe-base do Bootstrap</span>
           <p>Barra de progresso visual que representa o nível de ocupação do estoque em percentual. O container externo (<span class="ic">progress-agro</span>) define altura e fundo, enquanto a barra interna (<span class="ic">bar</span>) tem largura dinâmica via <span class="ic">style="width:X%"</span>. Quatro variações de cor mapeiam categorias distintas.</p>
           <span class="comp-where-lbl">Presente em</span>
           <span class="tag-file">index.html</span>
@@ -806,7 +814,9 @@
           <span class="comp-title">Form (Controls)</span>
         </div>
         <div class="comp-body">
-          <p>Conjunto de controles de formulário Bootstrap aplicados na tela de cadastro de insumos, organizado em grid de 12 colunas. Inclui <span class="ic">form-control</span> (inputs de texto, número, data), <span class="ic">form-select</span> (dropdowns de categoria e fornecedor) e <span class="ic">form-label</span> para acessibilidade semântica.</p>
+          <span class="comp-where-lbl">Classificação</span>
+          <span class="tag-file">Componente customizado — estilizado do zero sobre a estrutura, sem usar a classe-base do Bootstrap</span>
+          <p>Conjunto de campos de formulário organizado no grid de 12 colunas do Bootstrap. Os controles usam classes próprias estilizadas do zero — <span class="ic">form-control-agro</span> (inputs de texto, número, data), <span class="ic">form-select-agro</span> (dropdowns de categoria e fornecedor) e <span class="ic">form-label-agro</span> — sem as classes-base <span class="ic">form-control</span>/<span class="ic">form-select</span> do Bootstrap.</p>
           <span class="comp-where-lbl">Presente em</span>
           <span class="tag-file">cadastro.html</span>
           <span class="tag-file">editar.html</span>
@@ -886,6 +896,8 @@
           <span class="comp-title">Pagination</span>
         </div>
         <div class="comp-body">
+          <span class="comp-where-lbl">Classificação</span>
+          <span class="tag-file">Componente customizado — estilizado do zero sobre a estrutura, sem usar a classe-base do Bootstrap</span>
           <p>Navegação entre páginas de uma listagem de dados, implementada como lista <span class="ic">&lt;ul&gt;</span> com itens <span class="ic">&lt;li&gt;&lt;a&gt;</span>. A página ativa recebe a classe <span class="ic">active</span>. Aparece abaixo das tabelas de estoque e histórico de alertas, permitindo navegar grandes conjuntos de registros sem recarregar a página.</p>
           <span class="comp-where-lbl">Presente em</span>
           <span class="tag-file">estoque.html</span>
