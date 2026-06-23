@@ -59,7 +59,20 @@ function mostrarToast(mensagem, tipo) {
 // Expõe o helper como global para que os scripts de página possam usá-lo.
 window.mostrarToast = mostrarToast;
 
-// Ponto de entrada compartilhado — cada página adiciona o seu próprio script depois.
+// ─────────────────────────────────────────────────────────────────────────────
+// ID 21 — Plugin jQuery (jQuery Mask Plugin): MÁSCARAS de digitação dos campos.
+// A máscara só FORMATA o que o usuário digita enquanto digita. A VALIDAÇÃO por
+// Regex (ID 12) é outra responsabilidade e fica em validators.js.
+// ─────────────────────────────────────────────────────────────────────────────
 $(document).ready(function () {
-  // Intencionalmente vazio: a inicialização específica fica nos scripts de página.
+  // Máscara de CEP — campo presente nas páginas cadastro.html e editar.html.
+  // A checagem de existência evita erro nas páginas onde o campo não existe.
+  if ($('#cep').length) {
+    $('#cep').mask('00000-000');
+  }
+
+  // Máscara de telefone BR — campo presente na página configuracoes.html.
+  if ($('#telefone').length) {
+    $('#telefone').mask('(00) 00000-0000');
+  }
 });
