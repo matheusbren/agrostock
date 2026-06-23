@@ -32,7 +32,7 @@
       "categoria": "Fertilizante",
       "quantidade": 2450,
       "unidade": "kg",
-      "fornecedorId": "1",
+      "fornecedor": "Cooperativa Agrícola Central",
       "dataCompra": "2026-03-15",
       "estoqueMin": 500,
       "descricao": "Fertilizante mineral balanceado para adubação de cobertura em diversas culturas."
@@ -43,7 +43,7 @@
       "categoria": "Semente",
       "quantidade": 30,
       "unidade": "sacas",
-      "fornecedorId": "2",
+      "fornecedor": "Sementes do Sul Ltda",
       "dataCompra": "2026-04-02",
       "estoqueMin": 50,
       "descricao": "Semente de soja transgênica resistente a glifosato, alto vigor germinativo."
@@ -54,7 +54,7 @@
       "categoria": "Defensivo",
       "quantidade": 450,
       "unidade": "litros",
-      "fornecedorId": "3",
+      "fornecedor": "AgroDefensivos Brasil",
       "dataCompra": "2026-02-20",
       "estoqueMin": 100,
       "descricao": "Herbicida sistêmico não seletivo para controle de plantas daninhas."
@@ -65,7 +65,7 @@
       "categoria": "Fertilizante",
       "quantidade": 180,
       "unidade": "kg",
-      "fornecedorId": "1",
+      "fornecedor": "Cooperativa Agrícola Central",
       "dataCompra": "2026-01-28",
       "estoqueMin": 200,
       "descricao": "Fonte nitrogenada concentrada para adubação de cobertura."
@@ -76,7 +76,7 @@
       "categoria": "Semente",
       "quantidade": 120,
       "unidade": "sacas",
-      "fornecedorId": "2",
+      "fornecedor": "Sementes do Sul Ltda",
       "dataCompra": "2026-03-18",
       "estoqueMin": 40,
       "descricao": "Milho híbrido de alto rendimento, indicado para safra de verão."
@@ -87,7 +87,7 @@
       "categoria": "Defensivo",
       "quantidade": 25,
       "unidade": "kg",
-      "fornecedorId": "3",
+      "fornecedor": "AgroDefensivos Brasil",
       "dataCompra": "2026-05-10",
       "estoqueMin": 60,
       "descricao": "Fungicida de contato de amplo espectro para proteção foliar."

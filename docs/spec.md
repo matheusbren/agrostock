@@ -90,7 +90,7 @@ erDiagram
         string categoria
         number quantidade
         string unidade
-        string fornecedorId FK
+        string fornecedor
         string dataCompra
     }
 ```
@@ -104,7 +104,7 @@ nome        : Nome do insumo (ex: Fertilizante NPK)
 categoria   : Tipo do insumo (fertilizante, semente, defensivo)
 quantidade  : Quantidade disponível (número positivo)
 unidade     : Unidade de medida (kg, litros, sacas)
-fornecedorId: Referência ao fornecedor do insumo
+fornecedor  : Nome do fornecedor do insumo (denormalizado — string)
 dataCompra  : Data de aquisição do produto
 
 🏢 Fornecedores
@@ -155,7 +155,7 @@ Nota: PUT e DELETE para fornecedores podem ser implementados posteriormente, se 
       "categoria": "Fertilizante",
       "quantidade": 50,
       "unidade": "kg",
-      "fornecedorId": "1",
+      "fornecedor": "Cooperativa Agrícola",
       "dataCompra": "2026-03-15"
     },
     {
@@ -164,7 +164,7 @@ Nota: PUT e DELETE para fornecedores podem ser implementados posteriormente, se 
       "categoria": "Semente",
       "quantidade": 30,
       "unidade": "sacas",
-      "fornecedorId": "1",
+      "fornecedor": "Cooperativa Agrícola",
       "dataCompra": "2026-03-18"
     }
   ]
