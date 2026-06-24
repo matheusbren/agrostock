@@ -162,7 +162,7 @@
               <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">warning</span>
               <span class="fw-700 fs-label text-uppercase tracking-widest">Alertas de Estoque Baixo</span>
             </div>
-            <p class="fw-800 mb-2" style="font-family:'Manrope',sans-serif;font-size:2.5rem;color:var(--agro-on-error-container);line-height:1;">14</p>
+            <p id="kpiEstoqueBaixo" class="fw-800 mb-2" style="font-family:'Manrope',sans-serif;font-size:2.5rem;color:var(--agro-on-error-container);line-height:1;">14</p>
             <p class="mb-0" style="font-size:0.8rem;color:rgba(147,0,10,0.7);">Itens que requerem reposição imediata.</p>
           </div>
         </div>
@@ -376,10 +376,10 @@
             <div class="position-relative p-4" style="color:white;z-index:1;">
               <div class="d-flex align-items-center gap-3 mb-2">
                 <span class="material-symbols-outlined" style="font-size:2rem;">cloud_queue</span>
-                <span class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.75rem;">24°C</span>
+                <span id="climaTemp" class="fw-800" style="font-family:'Manrope',sans-serif;font-size:1.75rem;">24°C</span>
               </div>
-              <p class="fw-700 mb-1" style="font-size:1rem;">Fazenda Central Valley</p>
-              <p class="mb-0" style="font-size:0.8125rem;opacity:0.8;">Chuva leve esperada em 2 horas.</p>
+              <p id="climaLocal" class="fw-700 mb-1" style="font-size:1rem;">Fazenda Central Valley</p>
+              <p id="climaDesc" class="mb-0" style="font-size:0.8125rem;opacity:0.8;">Chuva leve esperada em 2 horas.</p>
             </div>
           </div>
 
@@ -417,5 +417,7 @@
   <script src="assets/js/api.js"></script>
   <script src="assets/js/public-apis.js"></script>
   <script src="assets/js/app.js"></script>
+  <!-- Script específico do painel (clima Open-Meteo + KPIs) -->
+  <script src="assets/js/page-dashboard.js"></script>
 </body>
 </html>
