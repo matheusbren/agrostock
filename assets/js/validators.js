@@ -111,5 +111,5 @@ window.AgroValidators = {
   validarCEP: validarCEP,
   validarNomeInsumo: validarNomeInsumo,
   validarQuantidade: validarQuantidade,
-  aplicarFeedback: aplicarFeedback
+  aplicarFeedback: aplicarFeedback,
 };

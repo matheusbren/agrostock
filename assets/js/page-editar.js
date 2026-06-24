@@ -134,7 +134,7 @@ $(document).ready(function () {
       quantidade: parseFloat(String(qtd).replace(',', '.')),
       unidade: unidade,
       estoqueMin: parseFloat(String($('#estoqueMin').val()).replace(',', '.')) || 0,
-      fornecedor: $('#fornecedor').val().trim()
+      fornecedor: $('#fornecedor').val().trim(),
     });
 
     var atualizado = await window.AgroApi.editarInsumo(id, obj);

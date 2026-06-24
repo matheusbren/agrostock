@@ -82,7 +82,7 @@
         var resp = await fetch(base + '/insumos', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(obj)
+          body: JSON.stringify(obj),
         });
         checarResposta(resp);
         return await resp.json();
@@ -102,7 +102,7 @@
         var resp = await fetch(base + '/insumos/' + id, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(obj)
+          body: JSON.stringify(obj),
         });
         checarResposta(resp);
         return await resp.json();
@@ -137,6 +137,6 @@
     obterInsumo: obterInsumo,
     criarInsumo: criarInsumo,
     editarInsumo: editarInsumo,
-    excluirInsumo: excluirInsumo
+    excluirInsumo: excluirInsumo,
   };
 })();

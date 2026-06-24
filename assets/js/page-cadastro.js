@@ -101,7 +101,7 @@ $(document).ready(function () {
       estoqueMin: parseFloat(String($('#estoqueMin').val()).replace(',', '.')) || 0,
       // Sem campo de data no form: usa a data de hoje (YYYY-MM-DD).
       dataCompra: new Date().toISOString().slice(0, 10),
-      fornecedor: $('#fornecedor').val().trim()
+      fornecedor: $('#fornecedor').val().trim(),
     };
 
     // ── ID 22/14: persiste via camada de dados (API fake ou localStorage) ─────

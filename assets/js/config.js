@@ -30,6 +30,6 @@
     // Flag usada pela camada de dados para escolher entre API e localStorage.
     usarJsonServer: ehLocal,
     // Coordenadas padrão para a API de clima (Open-Meteo) exibida no dashboard.
-    coords: { lat: -25.39, lon: -51.46, cidade: 'Guarapuava-PR' }
+    coords: { lat: -25.39, lon: -51.46, cidade: 'Guarapuava-PR' },
   };
 })();

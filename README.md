@@ -30,15 +30,19 @@ https://matheusbren.github.io/agrostock/
 | `prettier` | ^3.8.2 | Formatador de código |
 | `sass` | ^1.99.0 | Pré-processador CSS |
 
-**Bootstrap instalado via npm e servido localmente** (copiado para `assets/vendor/`) — sem CDN:
+**Bibliotecas instaladas via npm e servidas localmente** (copiadas para `assets/vendor/`) — sem CDN:
 ```
 assets/vendor/bootstrap/bootstrap.min.css
 assets/vendor/bootstrap/bootstrap.bundle.min.js
+assets/vendor/jquery/jquery.min.js
+assets/vendor/jquery/jquery.mask.min.js
 ```
 
-**APIs públicas utilizadas:**
-- **ViaCEP** (`https://viacep.com.br`) — preenchimento automático de endereço via CEP
-- **Open-Meteo** (`https://open-meteo.com`) — dados climáticos no dashboard
+> Bootstrap, jQuery e jQuery Mask Plugin são versionados em `assets/vendor/` e referenciados por caminho relativo (funciona no GitHub Pages sem conexão a CDN). As **fontes** (Manrope, Inter) e os **ícones** (Material Symbols) são a única dependência externa de front-end: carregados do Google Fonts via `@import` em `assets/scss/_base.scss`.
+
+**APIs públicas utilizadas** (consumidas em `assets/js/public-apis.js` com `fetch` + `async/await`):
+- **ViaCEP** (`https://viacep.com.br/ws/{cep}/json/`) — preenche endereço (rua, cidade, UF) a partir do CEP no cadastro/edição de insumo; trata CEP inválido/não encontrado com toast.
+- **Open-Meteo** (`https://api.open-meteo.com/v1/forecast`) — temperatura e condição atual no card de clima do dashboard; falha de rede degrada para um texto neutro, sem quebrar o layout.
 
 ---
 
@@ -66,11 +70,16 @@ cd agrostock
 # 2. Instalar dependências
 npm install
 
-# 3. Abrir index.html com Live Server (VS Code)
-#    ou abrir diretamente no navegador
+# 3. Compilar o CSS a partir do SCSS
+npm run sass:build       # ou `npm run sass:watch` para recompilar ao salvar
+
+# 4. (Opcional — desenvolvimento) Subir a API fake em http://localhost:3000
+npm run json:server      # serve db.json com GET/POST/PUT/DELETE em /insumos
+
+# 5. Abrir index.html com Live Server (VS Code) ou diretamente no navegador
 ```
 
-> O Bootstrap é servido a partir de `assets/vendor/bootstrap/` (versionado para o GitHub Pages) — não requer conexão com CDN.
+> **Fonte de dados (localhost × produção):** o JSON Server roda **apenas em `localhost`** — `assets/js/config.js` detecta o hostname e liga a flag `usarJsonServer`. No GitHub Pages (ou em qualquer host que não seja `localhost`/`127.0.0.1`) a aplicação usa automaticamente o **`localStorage`** do navegador como fonte de dados, então o site funciona hospedado de forma estática, sem servidor.
 
 ---
 
@@ -96,9 +105,9 @@ npm install
 ### RA2 — Tratamento de formulários e validações
 
 - [x] ID 11 — Implementa validação HTML nativa — atributos `required` nos campos obrigatórios de `cadastro.html` e `editar.html`
-- [ ] ID 12 — Aplica expressões regulares (REGEX) — pendente
+- [x] ID 12 — Aplica expressões regulares (REGEX) — funções puras em `assets/js/validators.js` (`validarNomeInsumo`, `validarQuantidade`, `validarEmail`, `validarTelefone`, `validarCEP`), com a regex comentada acima de cada uma; aplicadas no submit de `page-cadastro.js`, `page-editar.js` e `page-configuracoes.js` com feedback inline (`aplicarFeedback`)
 - [x] ID 13 — Utiliza elementos de seleção — `<select>` (categoria, fornecedor), `<input type="checkbox">` com `form-switch` (configurações), badges de status
-- [ ] ID 14 — Implementa Web Storage — pendente
+- [x] ID 14 — Implementa Web Storage — `assets/js/storage.js` encapsula o `localStorage` (chaves `agrostock:insumos` e `agrostock:preferencias`, com seed inicial em `semear()`); os insumos persistem por aqui como fallback de `api.js` e as preferências de `configuracoes.html` são lidas/gravadas em `page-configuracoes.js` (sobrevivem ao reload)
 
 ---
 
@@ -114,16 +123,16 @@ npm install
 
 ### RA4 — Bibliotecas JavaScript
 
-- [ ] ID 20 — Utiliza jQuery para manipulação do DOM — jQuery instalado; pendente integração nas páginas
-- [ ] ID 21 — Integra plugin jQuery — jQuery Mask Plugin instalado; pendente aplicação em campos de CEP/telefone
+- [x] ID 20 — Utiliza jQuery para manipulação do DOM — render dinâmico da tabela, busca, filtros por categoria e exclusão animada (`fadeIn`/`fadeOut`) em `assets/js/page-estoque.js`; helper `mostrarToast` em `app.js`; também usado em `page-detalhes.js`, `page-editar.js`, `page-configuracoes.js` e `page-dashboard.js`
+- [x] ID 21 — Integra plugin jQuery — jQuery Mask Plugin aplicado em `assets/js/app.js` (linhas 67–78): máscara `00000-000` no `#cep` (cadastro/edição) e `(00) 00000-0000` no `#telefone` (configurações)
 
 ---
 
 ### RA5 — Requisições assíncronas para APIs
 
-- [ ] ID 22 — Requisições para API fake (JSON Server) — JSON Server instalado; pendente criação do `db.json` e integração
-- [ ] ID 23 — Exibição de dados da API fake — pendente (depende do ID 22)
-- [x] ID 24 — Consumo de API pública — ViaCEP integrado via `fetch` no formulário de cadastro (preenchimento automático de endereço pelo CEP)
+- [x] ID 22 — Requisições para API fake (JSON Server) — `assets/js/api.js` faz `fetch` GET/POST/PUT/DELETE em `/insumos` quando em `localhost` (`db.json` via `npm run json:server`), com fallback para `localStorage` em produção — mesma assinatura nos dois ambientes (`window.AgroApi`)
+- [x] ID 23 — Exibição de dados da API fake — `page-estoque.js` renderiza a tabela a partir de `AgroApi.listarInsumos()`; `page-detalhes.js` exibe um insumo por `?id=`; `page-editar.js` preenche o formulário; `page-dashboard.js` calcula o KPI de estoque baixo
+- [x] ID 24 — Consumo de API pública — `assets/js/public-apis.js` (`fetch` + `async/await`): **ViaCEP** preenche o endereço pelo CEP no cadastro/edição e **Open-Meteo** alimenta o card de clima do dashboard (`page-dashboard.js`), com tratamento de erro que não quebra o layout
 
 ---
 

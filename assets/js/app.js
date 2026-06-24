@@ -21,7 +21,7 @@ function mostrarToast(mensagem, tipo) {
     $container = $('<div>', {
       id: 'agroToastContainer',
       class: 'toast-container position-fixed bottom-0 end-0 p-4',
-      css: { zIndex: 1100 }
+      css: { zIndex: 1100 },
     }).appendTo(document.body);
   }
 
@@ -29,7 +29,7 @@ function mostrarToast(mensagem, tipo) {
   var cores = {
     sucesso: 'var(--agro-primary)',
     erro: 'var(--agro-error)',
-    info: 'var(--agro-on-surface-variant)'
+    info: 'var(--agro-on-surface-variant)',
   };
   var cor = cores[tipo] || cores.info;
 
@@ -37,11 +37,11 @@ function mostrarToast(mensagem, tipo) {
   var $toast = $(
     '<div class="toast toast-agro" role="alert" aria-live="assertive" aria-atomic="true">' +
       '<div class="d-flex align-items-center gap-3 p-3">' +
-        '<span class="rounded-circle flex-shrink-0" style="width:0.6rem;height:0.6rem;"></span>' +
-        '<span class="flex-grow-1" style="font-size:0.875rem;"></span>' +
-        '<button type="button" class="btn-close ms-2" data-bs-dismiss="toast" aria-label="Fechar"></button>' +
+      '<span class="rounded-circle flex-shrink-0" style="width:0.6rem;height:0.6rem;"></span>' +
+      '<span class="flex-grow-1" style="font-size:0.875rem;"></span>' +
+      '<button type="button" class="btn-close ms-2" data-bs-dismiss="toast" aria-label="Fechar"></button>' +
       '</div>' +
-    '</div>'
+      '</div>'
   );
   // Aplica a cor no indicador e usa .text() para escapar a mensagem (evita injeção de HTML).
   $toast.find('span.rounded-circle').css('background', cor);

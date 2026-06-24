@@ -57,9 +57,7 @@ $(document).ready(function () {
       .empty()
       .append(document.createTextNode(formatarNumero(valor) + ' '))
       .append(
-        $('<span></span>')
-          .css({ fontSize: '1rem', fontWeight: 500, opacity: 0.5 })
-          .text(unidade)
+        $('<span></span>').css({ fontSize: '1rem', fontWeight: 500, opacity: 0.5 }).text(unidade)
       );
   }
 
@@ -81,7 +79,9 @@ $(document).ready(function () {
     setMetrica('#detEstoqueMin', min, unidade);
 
     var st = statusBadge(qtd, min);
-    $('#detStatus').attr('class', 'badge-status ' + st.classe).text(st.texto);
+    $('#detStatus')
+      .attr('class', 'badge-status ' + st.classe)
+      .text(st.texto);
 
     if (insumo.descricao) {
       $('#detDescricao').text(insumo.descricao);

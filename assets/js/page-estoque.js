@@ -25,7 +25,7 @@ $(document).ready(function () {
   var ICONES = {
     fertilizante: 'eco',
     semente: 'grain',
-    defensivo: 'water_drop'
+    defensivo: 'water_drop',
   };
 
   // ── Utilidades ───────────────────────────────────────────────────────────────
@@ -50,12 +50,27 @@ $(document).ready(function () {
   // Decide o status a partir da quantidade x estoque mínimo.
   function calcularStatus(qtd, min) {
     if (qtd <= 0) {
-      return { chave: 'esgotado', badgeClasse: 'badge-esgotado', badgeTexto: 'Esgotado', alerta: true };
+      return {
+        chave: 'esgotado',
+        badgeClasse: 'badge-esgotado',
+        badgeTexto: 'Esgotado',
+        alerta: true,
+      };
     }
     if (min > 0 && qtd < min) {
-      return { chave: 'baixo', badgeClasse: 'badge-estoque-baixo', badgeTexto: 'Estoque Baixo', alerta: true };
+      return {
+        chave: 'baixo',
+        badgeClasse: 'badge-estoque-baixo',
+        badgeTexto: 'Estoque Baixo',
+        alerta: true,
+      };
     }
-    return { chave: 'ok', badgeClasse: 'badge-em-estoque', badgeTexto: 'Em Estoque', alerta: false };
+    return {
+      chave: 'ok',
+      badgeClasse: 'badge-em-estoque',
+      badgeTexto: 'Em Estoque',
+      alerta: false,
+    };
   }
 
   // ── Render (ID 23) ───────────────────────────────────────────────────────────
@@ -84,43 +99,79 @@ $(document).ready(function () {
     }
 
     return (
-      '<tr class="linha-insumo" data-id="' + esc(insumo.id) + '" data-categoria="' + esc(categoria) + '">' +
-        '<td>' +
-          '<div class="d-flex align-items-center gap-3">' +
-            '<div class="rounded-2 d-flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem;background:rgba(23,51,14,0.08);color:var(--agro-primary);">' +
-              '<span class="material-symbols-outlined" style="font-size:1.1rem;">' + icone + '</span>' +
-            '</div>' +
-            '<div>' +
-              '<p class="fw-700 mb-0" style="font-size:0.875rem;">' + esc(nome) + '</p>' +
-              '<p class="mb-0 text-muted-agro" style="font-size:0.6875rem;">Cód: ' + esc(insumo.id) + '</p>' +
-            '</div>' +
-          '</div>' +
-        '</td>' +
-        '<td><span class="text-muted-agro" style="font-size:0.8125rem;">' + esc(categoria) + '</span></td>' +
-        '<td class="text-end">' +
-          '<p class="fw-700 mb-0' + qtdClasse + '" style="font-size:0.875rem;">' + formatarNumero(qtd) + ' ' + esc(unidade) + '</p>' +
-          '<p class="mb-0 ' + subClasse + '" style="font-size:0.6875rem;">' + subTexto + '</p>' +
-        '</td>' +
-        '<td>' +
-          '<div class="d-flex align-items-center gap-2">' +
-            '<span class="rounded-circle" style="width:0.5rem;height:0.5rem;background:var(--agro-secondary);display:inline-block;flex-shrink:0;"></span>' +
-            '<span class="text-muted-agro" style="font-size:0.875rem;">' + esc(fornecedor) + '</span>' +
-          '</div>' +
-        '</td>' +
-        '<td><span class="badge-status ' + status.badgeClasse + '">' + status.badgeTexto + '</span></td>' +
-        '<td class="text-end">' +
-          '<div class="d-flex align-items-center justify-content-end gap-1">' +
-            '<a href="detalhes.html?id=' + encodeURIComponent(insumo.id) + '" class="btn-icon" aria-label="Ver detalhes">' +
-              '<span class="material-symbols-outlined" style="font-size:1.1rem;">visibility</span>' +
-            '</a>' +
-            '<a href="editar.html?id=' + encodeURIComponent(insumo.id) + '" class="btn-icon" aria-label="Editar">' +
-              '<span class="material-symbols-outlined" style="font-size:1.1rem;">edit</span>' +
-            '</a>' +
-            '<button type="button" class="btn-icon btn-excluir" data-id="' + esc(insumo.id) + '" data-nome="' + esc(nome) + '" aria-label="Excluir">' +
-              '<span class="material-symbols-outlined" style="font-size:1.1rem;">delete</span>' +
-            '</button>' +
-          '</div>' +
-        '</td>' +
+      '<tr class="linha-insumo" data-id="' +
+      esc(insumo.id) +
+      '" data-categoria="' +
+      esc(categoria) +
+      '">' +
+      '<td>' +
+      '<div class="d-flex align-items-center gap-3">' +
+      '<div class="rounded-2 d-flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem;background:rgba(23,51,14,0.08);color:var(--agro-primary);">' +
+      '<span class="material-symbols-outlined" style="font-size:1.1rem;">' +
+      icone +
+      '</span>' +
+      '</div>' +
+      '<div>' +
+      '<p class="fw-700 mb-0" style="font-size:0.875rem;">' +
+      esc(nome) +
+      '</p>' +
+      '<p class="mb-0 text-muted-agro" style="font-size:0.6875rem;">Cód: ' +
+      esc(insumo.id) +
+      '</p>' +
+      '</div>' +
+      '</div>' +
+      '</td>' +
+      '<td><span class="text-muted-agro" style="font-size:0.8125rem;">' +
+      esc(categoria) +
+      '</span></td>' +
+      '<td class="text-end">' +
+      '<p class="fw-700 mb-0' +
+      qtdClasse +
+      '" style="font-size:0.875rem;">' +
+      formatarNumero(qtd) +
+      ' ' +
+      esc(unidade) +
+      '</p>' +
+      '<p class="mb-0 ' +
+      subClasse +
+      '" style="font-size:0.6875rem;">' +
+      subTexto +
+      '</p>' +
+      '</td>' +
+      '<td>' +
+      '<div class="d-flex align-items-center gap-2">' +
+      '<span class="rounded-circle" style="width:0.5rem;height:0.5rem;background:var(--agro-secondary);display:inline-block;flex-shrink:0;"></span>' +
+      '<span class="text-muted-agro" style="font-size:0.875rem;">' +
+      esc(fornecedor) +
+      '</span>' +
+      '</div>' +
+      '</td>' +
+      '<td><span class="badge-status ' +
+      status.badgeClasse +
+      '">' +
+      status.badgeTexto +
+      '</span></td>' +
+      '<td class="text-end">' +
+      '<div class="d-flex align-items-center justify-content-end gap-1">' +
+      '<a href="detalhes.html?id=' +
+      encodeURIComponent(insumo.id) +
+      '" class="btn-icon" aria-label="Ver detalhes">' +
+      '<span class="material-symbols-outlined" style="font-size:1.1rem;">visibility</span>' +
+      '</a>' +
+      '<a href="editar.html?id=' +
+      encodeURIComponent(insumo.id) +
+      '" class="btn-icon" aria-label="Editar">' +
+      '<span class="material-symbols-outlined" style="font-size:1.1rem;">edit</span>' +
+      '</a>' +
+      '<button type="button" class="btn-icon btn-excluir" data-id="' +
+      esc(insumo.id) +
+      '" data-nome="' +
+      esc(nome) +
+      '" aria-label="Excluir">' +
+      '<span class="material-symbols-outlined" style="font-size:1.1rem;">delete</span>' +
+      '</button>' +
+      '</div>' +
+      '</td>' +
       '</tr>'
     );
   }
@@ -134,7 +185,7 @@ $(document).ready(function () {
       $corpo.html(
         '<tr id="linhaVazia"><td colspan="6" class="text-center text-muted-agro py-5" style="font-size:0.9375rem;">' +
           'Nenhum insumo cadastrado.' +
-        '</td></tr>'
+          '</td></tr>'
       );
       atualizarContagens(0, 0);
       return;
@@ -147,7 +198,7 @@ $(document).ready(function () {
     // Linha auxiliar (oculta) exibida quando um filtro não retorna resultados.
     html +=
       '<tr id="linhaSemResultado" style="display:none;"><td colspan="6" class="text-center text-muted-agro py-5" style="font-size:0.9375rem;">' +
-        'Nenhum insumo corresponde ao filtro.' +
+      'Nenhum insumo corresponde ao filtro.' +
       '</td></tr>';
     $corpo.html(html);
     atualizarContagens(lista.length, lista.length);

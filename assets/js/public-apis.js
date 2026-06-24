@@ -57,7 +57,7 @@
       return {
         endereco: partes.join(', '),
         cidade: dados.localidade || '',
-        estado: dados.uf || ''
+        estado: dados.uf || '',
       };
     } catch (e) {
       console.error('Falha ao consultar a ViaCEP:', e);
@@ -102,7 +102,7 @@
       86: 'Pancadas de neve fortes',
       95: 'Trovoada',
       96: 'Trovoada com granizo leve',
-      99: 'Trovoada com granizo forte'
+      99: 'Trovoada com granizo forte',
     };
     return tabela[codigo] || 'Condição indisponível';
   }
@@ -133,7 +133,7 @@
       }
       return {
         temperatura: dados.current_weather.temperature,
-        codigo: dados.current_weather.weathercode
+        codigo: dados.current_weather.weathercode,
       };
     } catch (e) {
       // Falha de clima NÃO deve impedir o dashboard de carregar: só registra e retorna null.
@@ -146,6 +146,6 @@
   window.AgroPublicApis = {
     buscarCEP: buscarCEP,
     buscarClima: buscarClima,
-    descreverTempo: descreverTempo
+    descreverTempo: descreverTempo,
   };
 })();

@@ -1,0 +1,9 @@
+# Bibliotecas de terceiros (vendorizadas / minificadas) — não reformatar
+assets/vendor/
+
+# CSS compilado a partir do SCSS (gerado por `npm run sass:build`)
+assets/css/style.css
+assets/css/style.css.map
+
+# Arquivos gerados / lockfiles
+package-lock.json

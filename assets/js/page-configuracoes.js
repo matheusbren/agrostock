@@ -24,7 +24,7 @@ $(document).ready(function () {
     'nomeFazenda',
     'cidade',
     'areaTotal',
-    'moeda'
+    'moeda',
   ];
   var SWITCHES = ['notifBaixo', 'notifValidade', 'notifEntrega', 'notifEmail'];
 
