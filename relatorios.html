@@ -110,26 +110,26 @@
       <div class="row g-4 mb-5">
         <div class="col-6 col-lg-3">
           <div class="metric-block">
-            <p class="metric-label">Entradas no Período</p>
-            <p class="metric-value text-primary-agro">+4.820 <span style="font-size:1rem;font-weight:500;opacity:0.5;">kg</span></p>
+            <p class="metric-label">Total de Itens</p>
+            <p class="metric-value text-primary-agro" id="repTotal">0</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="metric-block">
-            <p class="metric-label">Saídas no Período</p>
-            <p class="metric-value" style="color:var(--agro-secondary);">-2.150 <span style="font-size:1rem;font-weight:500;opacity:0.5;">kg</span></p>
+            <p class="metric-label">Em Estoque</p>
+            <p class="metric-value" id="repOk">0</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="metric-block">
-            <p class="metric-label">Alertas Gerados</p>
-            <p class="metric-value text-error-agro">14</p>
+            <p class="metric-label">Estoque Baixo</p>
+            <p class="metric-value text-error-agro" id="repBaixo">0</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="metric-block">
-            <p class="metric-label">Giro de Estoque</p>
-            <p class="metric-value">2,4x</p>
+            <p class="metric-label">Esgotados</p>
+            <p class="metric-value text-error-agro" id="repEsgotado">0</p>
           </div>
         </div>
       </div>
@@ -177,30 +177,9 @@
         <!-- Category breakdown -->
         <div class="col-12 col-md-5">
           <div class="section-card h-100">
-            <h3 class="fw-700 mb-4" style="font-size:1rem;">Consumo por Categoria</h3>
-            <div class="d-flex flex-column gap-4">
-              <div>
-                <div class="d-flex justify-content-between mb-2">
-                  <span class="fw-700" style="font-size:0.875rem;">Fertilizantes</span>
-                  <span class="fw-700 text-primary-agro" style="font-size:0.875rem;">42%</span>
-                </div>
-                <div class="progress-agro" style="height:8px;"><div class="bar bar-primary" style="width:42%"></div></div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-2">
-                  <span class="fw-700" style="font-size:0.875rem;">Sementes</span>
-                  <span class="fw-700" style="font-size:0.875rem;color:var(--agro-secondary);">28%</span>
-                </div>
-                <div class="progress-agro" style="height:8px;"><div class="bar bar-secondary" style="width:28%"></div></div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-2">
-                  <span class="fw-700" style="font-size:0.875rem;">Defensivos</span>
-                  <span class="fw-700 text-tertiary-agro" style="font-size:0.875rem;">30%</span>
-                </div>
-                <div class="progress-agro" style="height:8px;"><div class="bar bar-tertiary" style="width:30%"></div></div>
-              </div>
-            </div>
+            <h3 class="fw-700 mb-4" style="font-size:1rem;">Distribuição por Categoria</h3>
+            <!-- Preenchido dinamicamente por page-relatorios.js (% por nº de itens — ID 23). -->
+            <div id="repCategorias" class="d-flex flex-column gap-4"></div>
           </div>
         </div>
 
@@ -215,42 +194,18 @@
                 <thead>
                   <tr>
                     <th>Item</th>
-                    <th>Data</th>
-                    <th>Tipo</th>
+                    <th>Compra</th>
+                    <th>Categoria</th>
                     <th>Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="fw-700" style="font-size:0.875rem;">Milho Híbrido Z-45</td>
-                    <td class="text-muted-agro" style="font-size:0.8125rem;">18/04/2024</td>
-                    <td><span class="badge-status badge-estoque-baixo">Estoque Baixo</span></td>
-                    <td><span class="badge-status badge-em-estoque">Resolvido</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-700" style="font-size:0.875rem;">Composto Orgânico M-1</td>
-                    <td class="text-muted-agro" style="font-size:0.8125rem;">12/04/2024</td>
-                    <td><span class="badge-status badge-esgotado">Esgotado</span></td>
-                    <td><span class="badge-status badge-em-transito">Em Reposição</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-700" style="font-size:0.875rem;">Soja Transgênica RR</td>
-                    <td class="text-muted-agro" style="font-size:0.8125rem;">05/04/2024</td>
-                    <td><span class="badge-status badge-estoque-baixo">Estoque Baixo</span></td>
-                    <td><span class="badge-status badge-em-estoque">Resolvido</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-700" style="font-size:0.875rem;">Glifosato 480SL</td>
-                    <td class="text-muted-agro" style="font-size:0.8125rem;">28/03/2024</td>
-                    <td><span class="badge-status badge-em-transito">Lote Vencendo</span></td>
-                    <td><span class="badge-status badge-em-transito">Pendente</span></td>
-                  </tr>
-                </tbody>
+                <!-- Linhas preenchidas dinamicamente por page-relatorios.js (ID 23). -->
+                <tbody id="repCorpoAlertas"></tbody>
               </table>
             </div>
             <!-- Pagination -->
             <div class="d-flex justify-content-between align-items-center px-4 py-3 bg-surface-low">
-              <span class="text-muted-agro" style="font-size:0.75rem;">Mostrando 1 a 4 de 14 alertas</span>
+              <span id="repContagemAlertas" class="text-muted-agro" style="font-size:0.75rem;">—</span>
               <nav aria-label="Paginação">
                 <ul class="pagination-agro">
                   <li><button class="page-link-agro" disabled><span class="material-symbols-outlined" style="font-size:1.1rem;">chevron_left</span></button></li>
@@ -289,5 +244,7 @@
   <script src="assets/js/api.js"></script>
   <script src="assets/js/public-apis.js"></script>
   <script src="assets/js/app.js"></script>
+  <!-- Script específico dos relatórios (KPIs, distribuição e alertas via dados) -->
+  <script src="assets/js/page-relatorios.js"></script>
 </body>
 </html>
