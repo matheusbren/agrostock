@@ -113,6 +113,9 @@ $(document).ready(function () {
             '<a href="detalhes.html?id=' + encodeURIComponent(insumo.id) + '" class="btn-icon" aria-label="Ver detalhes">' +
               '<span class="material-symbols-outlined" style="font-size:1.1rem;">visibility</span>' +
             '</a>' +
+            '<a href="editar.html?id=' + encodeURIComponent(insumo.id) + '" class="btn-icon" aria-label="Editar">' +
+              '<span class="material-symbols-outlined" style="font-size:1.1rem;">edit</span>' +
+            '</a>' +
             '<button type="button" class="btn-icon btn-excluir" data-id="' + esc(insumo.id) + '" data-nome="' + esc(nome) + '" aria-label="Excluir">' +
               '<span class="material-symbols-outlined" style="font-size:1.1rem;">delete</span>' +
             '</button>' +
