@@ -139,23 +139,3 @@ npm run json:server      # serve db.json com GET/POST/PUT/DELETE em /insumos
 ## Relatório de Auditoria
 
 Disponível em [`relatorio-auditoria.html`](relatorio-auditoria.html) — contém análise dos componentes de interface (Bootstrap nativos + customizados), análise do sistema Grid/Flexbox e explicação técnica do rodapé fixo.
-
----
-
-## Telas da Aplicação
-
-### Teste de Responsividade — Desktop (lg · 1280px) vs Mobile (xs · 375px)
-
-| Página | Desktop | Mobile |
-|---|---|---|
-| Dashboard | ![dashboard desktop](screenshots/dashboard-desktop.png) | ![dashboard mobile](screenshots/dashboard-mobile.png) |
-| Estoque | ![estoque desktop](screenshots/estoque-desktop.png) | ![estoque mobile](screenshots/estoque-mobile.png) |
-| Cadastro | ![cadastro desktop](screenshots/cadastro-desktop.png) | ![cadastro mobile](screenshots/cadastro-mobile.png) |
-| Detalhes | ![detalhes desktop](screenshots/detalhes-desktop.png) | ![detalhes mobile](screenshots/detalhes-mobile.png) |
-| Editar | ![editar desktop](screenshots/editar-desktop.png) | ![editar mobile](screenshots/editar-mobile.png) |
-| Relatórios | ![relatorios desktop](screenshots/relatorios-desktop.png) | ![relatorios mobile](screenshots/relatorios-mobile.png) |
-| Configurações | ![configuracoes desktop](screenshots/configuracoes-desktop.png) | ![configuracoes mobile](screenshots/configuracoes-mobile.png) |
-
-### Relatório de Componentes, Grid/Flexbox e Sticky Footer
-
-![relatorio auditoria](screenshots/relatorio-auditoria-desktop.png)
